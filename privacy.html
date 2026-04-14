@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Kitchen Alone</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0F1A0F; --surface: #1e3a1e; --gold: #FFC840;
+    --green: #4CAF50; --text: #ffffff; --subtext: #6a9a6a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; }
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 48px; border-bottom: 1px solid rgba(255,200,64,0.1);
+    position: sticky; top: 0; background: rgba(15,26,15,0.95);
+    backdrop-filter: blur(10px); z-index: 100;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-logo img { width: 40px; height: 40px; object-fit: contain; }
+  .nav-logo span { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--gold); font-weight: 700; }
+  .lang-switcher { display: flex; gap: 8px; }
+  .lang-btn {
+    background: none; border: 1px solid rgba(255,200,64,0.2); color: var(--subtext);
+    padding: 4px 10px; border-radius: 20px; cursor: pointer; font-size: 12px;
+    font-family: 'DM Sans', sans-serif; transition: all 0.2s;
+  }
+  .lang-btn.active, .lang-btn:hover { background: var(--gold); color: #111; border-color: var(--gold); }
+  .content { max-width: 760px; margin: 0 auto; padding: 60px 24px 80px; }
+  .page-title {
+    font-family: 'Playfair Display', serif; font-size: clamp(32px, 5vw, 52px);
+    font-weight: 900; color: var(--gold); margin-bottom: 8px;
+  }
+  .effective-date { color: var(--subtext); font-size: 14px; margin-bottom: 48px; }
+  .section { margin-bottom: 40px; }
+  .section h2 {
+    font-family: 'Playfair Display', serif; font-size: 22px;
+    color: var(--green); margin-bottom: 12px;
+    padding-bottom: 8px; border-bottom: 1px solid rgba(76,175,80,0.2);
+  }
+  .section p { color: #ccc; line-height: 1.8; font-size: 15px; margin-bottom: 12px; }
+  .section ul { padding-left: 20px; }
+  .section ul li { color: #ccc; line-height: 1.8; font-size: 15px; margin-bottom: 6px; }
+  .section ul li strong { color: var(--gold); }
+  .contact-box {
+    background: var(--surface); border: 1px solid rgba(255,200,64,0.2);
+    border-radius: 16px; padding: 24px; margin-top: 16px;
+  }
+  .contact-box a { color: var(--gold); text-decoration: none; }
+  footer {
+    border-top: 1px solid rgba(255,200,64,0.1); padding: 32px 48px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+  }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { color: var(--subtext); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-copy { color: var(--subtext); font-size: 13px; }
+  @media (max-width: 640px) {
+    nav { padding: 16px 20px; }
+    footer { padding: 24px 20px; flex-direction: column; text-align: center; }
+    .footer-links { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="logo.png" alt="Kitchen Alone">
+    <span>Kitchen Alone</span>
+  </a>
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('ru')">RU</button>
+    <button class="lang-btn" onclick="setLang('es')">ES</button>
+    <button class="lang-btn" onclick="setLang('fr')">FR</button>
+  </div>
+</nav>
+
+<div class="content" id="content">
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="support.html">Support</a>
+    <a href="index.html">Home</a>
+  </div>
+  <p class="footer-copy">© 2026 Kitchen Alone. All rights reserved.</p>
+</footer>
+
+<script>
+const content = {
+  en: `
+    <h1 class="page-title">Privacy Policy</h1>
+    <p class="effective-date">Effective Date: April 12, 2026</p>
+    <div class="section">
+      <h2>1. Introduction</h2>
+      <p>Welcome to Kitchen Alone. We respect your privacy and are committed to protecting your personal data. This Privacy Policy explains how we handle your information when you use our mobile application.</p>
+    </div>
+    <div class="section">
+      <h2>2. Data We Collect</h2>
+      <ul>
+        <li><strong>Identity Data:</strong> We collect your name provided during Sign in with Apple registration.</li>
+        <li><strong>Authentication:</strong> We use Apple ID for secure sign-in. We do not see or store your Apple password.</li>
+        <li><strong>Dietary Preferences:</strong> Dietary profile you choose (e.g. vegan, diabetic) to personalise recipes.</li>
+        <li><strong>Usage Data:</strong> Information about how you use the app via Firebase Analytics to improve recipes and user experience.</li>
+        <li><strong>Saved Recipes:</strong> Recipes you choose to save are stored securely in Firebase Firestore under your account.</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>3. Third-Party Services</h2>
+      <ul>
+        <li><strong>Google Firebase:</strong> For database management, analytics, and infrastructure.</li>
+        <li><strong>Anthropic Claude AI:</strong> For generating personalised recipes. Ingredient data is sent to generate your recipe.</li>
+        <li><strong>Apple Sign In:</strong> For secure authentication. Apple's privacy policy applies.</li>
+        <li><strong>Apple App Store / In-App Purchases:</strong> All financial transactions are processed securely by Apple. We do not store your credit card details.</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>4. How We Use Your Data</h2>
+      <ul>
+        <li>To generate personalised AI recipes based on your ingredients and dietary profile</li>
+        <li>To save and sync your recipe history across devices</li>
+        <li>To improve app performance and user experience</li>
+        <li>To process subscription payments securely</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>5. Data Retention</h2>
+      <p>We retain your data for as long as your account is active. You can request deletion of your account and associated data at any time by contacting us.</p>
+    </div>
+    <div class="section">
+      <h2>6. Children's Privacy</h2>
+      <p>Kitchen Alone is not directed at children under 13. We do not knowingly collect personal information from children under 13.</p>
+    </div>
+    <div class="section">
+      <h2>7. Your Rights</h2>
+      <ul>
+        <li>Access the personal data we hold about you</li>
+        <li>Request correction of inaccurate data</li>
+        <li>Request deletion of your data</li>
+        <li>Withdraw consent at any time</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>8. Contact Us</h2>
+      <div class="contact-box">
+        <p>If you have any questions about this Privacy Policy, please contact us at:<br>
+        <a href="mailto:support@kitchenalone.app">support@kitchenalone.app</a></p>
+      </div>
+    </div>`,
+
+  ru: `
+    <h1 class="page-title">Политика конфиденциальности</h1>
+    <p class="effective-date">Дата вступления в силу: 12 апреля 2026 г.</p>
+    <div class="section">
+      <h2>1. Введение</h2>
+      <p>Добро пожаловать в Kitchen Alone. Мы уважаем вашу конфиденциальность и стремимся защищать ваши персональные данные. Эта Политика конфиденциальности объясняет, как мы обрабатываем вашу информацию при использовании нашего мобильного приложения.</p>
+    </div>
+    <div class="section">
+      <h2>2. Данные которые мы собираем</h2>
+      <ul>
+        <li><strong>Данные личности:</strong> Ваше имя, предоставленное при регистрации через Apple ID.</li>
+        <li><strong>Аутентификация:</strong> Мы используем Apple ID для безопасного входа. Мы не видим и не храним ваш пароль Apple.</li>
+        <li><strong>Диетические предпочтения:</strong> Выбранный вами профиль питания (например, веган, диабетик) для персонализации рецептов.</li>
+        <li><strong>Данные использования:</strong> Информация о том, как вы используете приложение через Firebase Analytics.</li>
+        <li><strong>Сохранённые рецепты:</strong> Рецепты, которые вы выбрали сохранить, хранятся в Firebase Firestore под вашим аккаунтом.</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>3. Сторонние сервисы</h2>
+      <ul>
+        <li><strong>Google Firebase:</strong> Для управления базой данных, аналитики и инфраструктуры.</li>
+        <li><strong>Anthropic Claude AI:</strong> Для генерации персональных рецептов.</li>
+        <li><strong>Apple Sign In:</strong> Для безопасной аутентификации.</li>
+        <li><strong>Apple App Store:</strong> Все финансовые транзакции обрабатываются Apple. Мы не храним данные вашей карты.</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>4. Как мы используем ваши данные</h2>
+      <ul>
+        <li>Для генерации персональных AI-рецептов на основе ваших ингредиентов и профиля питания</li>
+        <li>Для сохранения и синхронизации истории рецептов на всех устройствах</li>
+        <li>Для улучшения производительности приложения и пользовательского опыта</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>5. Хранение данных</h2>
+      <p>Мы храним ваши данные пока ваш аккаунт активен. Вы можете запросить удаление аккаунта и связанных данных в любое время, связавшись с нами.</p>
+    </div>
+    <div class="section">
+      <h2>6. Конфиденциальность детей</h2>
+      <p>Kitchen Alone не предназначен для детей младше 13 лет. Мы сознательно не собираем персональные данные детей младше 13 лет.</p>
+    </div>
+    <div class="section">
+      <h2>7. Ваши права</h2>
+      <ul>
+        <li>Доступ к вашим персональным данным</li>
+        <li>Запрос на исправление неточных данных</li>
+        <li>Запрос на удаление ваших данных</li>
+        <li>Отзыв согласия в любое время</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>8. Свяжитесь с нами</h2>
+      <div class="contact-box">
+        <p>Если у вас есть вопросы об этой Политике конфиденциальности, свяжитесь с нами:<br>
+        <a href="mailto:support@kitchenalone.app">support@kitchenalone.app</a></p>
+      </div>
+    </div>`,
+
+  es: `
+    <h1 class="page-title">Política de Privacidad</h1>
+    <p class="effective-date">Fecha de vigencia: 12 de abril de 2026</p>
+    <div class="section">
+      <h2>1. Introducción</h2>
+      <p>Bienvenido a Kitchen Alone. Respetamos tu privacidad y nos comprometemos a proteger tus datos personales. Esta Política de Privacidad explica cómo manejamos tu información cuando usas nuestra aplicación móvil.</p>
+    </div>
+    <div class="section">
+      <h2>2. Datos que recopilamos</h2>
+      <ul>
+        <li><strong>Datos de identidad:</strong> Tu nombre proporcionado durante el registro con Apple ID.</li>
+        <li><strong>Autenticación:</strong> Usamos Apple ID para el inicio de sesión seguro. No vemos ni almacenamos tu contraseña de Apple.</li>
+        <li><strong>Preferencias dietéticas:</strong> El perfil dietético que eliges para personalizar recetas.</li>
+        <li><strong>Datos de uso:</strong> Información sobre cómo usas la app a través de Firebase Analytics.</li>
+        <li><strong>Recetas guardadas:</strong> Las recetas que eliges guardar se almacenan de forma segura en Firebase Firestore.</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>3. Servicios de terceros</h2>
+      <ul>
+        <li><strong>Google Firebase:</strong> Para gestión de base de datos, análisis e infraestructura.</li>
+        <li><strong>Anthropic Claude AI:</strong> Para generar recetas personalizadas.</li>
+        <li><strong>Apple Sign In:</strong> Para autenticación segura.</li>
+        <li><strong>Apple App Store:</strong> Todas las transacciones financieras son procesadas por Apple.</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>4. Cómo usamos tus datos</h2>
+      <ul>
+        <li>Para generar recetas AI personalizadas basadas en tus ingredientes y perfil dietético</li>
+        <li>Para guardar y sincronizar tu historial de recetas en todos los dispositivos</li>
+        <li>Para mejorar el rendimiento de la app y la experiencia del usuario</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>5. Retención de datos</h2>
+      <p>Retenemos tus datos mientras tu cuenta esté activa. Puedes solicitar la eliminación de tu cuenta y datos asociados en cualquier momento contactándonos.</p>
+    </div>
+    <div class="section">
+      <h2>6. Privacidad de menores</h2>
+      <p>Kitchen Alone no está dirigido a menores de 13 años. No recopilamos conscientemente información personal de menores de 13 años.</p>
+    </div>
+    <div class="section">
+      <h2>7. Tus derechos</h2>
+      <ul>
+        <li>Acceder a los datos personales que tenemos sobre ti</li>
+        <li>Solicitar corrección de datos inexactos</li>
+        <li>Solicitar eliminación de tus datos</li>
+        <li>Retirar el consentimiento en cualquier momento</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>8. Contáctanos</h2>
+      <div class="contact-box">
+        <p>Si tienes preguntas sobre esta Política de Privacidad, contáctanos en:<br>
+        <a href="mailto:support@kitchenalone.app">support@kitchenalone.app</a></p>
+      </div>
+    </div>`,
+
+  fr: `
+    <h1 class="page-title">Politique de Confidentialité</h1>
+    <p class="effective-date">Date d'entrée en vigueur : 12 avril 2026</p>
+    <div class="section">
+      <h2>1. Introduction</h2>
+      <p>Bienvenue sur Kitchen Alone. Nous respectons votre vie privée et nous engageons à protéger vos données personnelles. Cette Politique de Confidentialité explique comment nous traitons vos informations lorsque vous utilisez notre application mobile.</p>
+    </div>
+    <div class="section">
+      <h2>2. Données que nous collectons</h2>
+      <ul>
+        <li><strong>Données d'identité :</strong> Votre nom fourni lors de l'inscription via Apple ID.</li>
+        <li><strong>Authentification :</strong> Nous utilisons Apple ID pour une connexion sécurisée. Nous ne voyons ni ne stockons votre mot de passe Apple.</li>
+        <li><strong>Préférences alimentaires :</strong> Le profil alimentaire que vous choisissez pour personnaliser les recettes.</li>
+        <li><strong>Données d'utilisation :</strong> Informations sur la façon dont vous utilisez l'app via Firebase Analytics.</li>
+        <li><strong>Recettes sauvegardées :</strong> Les recettes que vous choisissez de sauvegarder sont stockées dans Firebase Firestore.</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>3. Services tiers</h2>
+      <ul>
+        <li><strong>Google Firebase :</strong> Pour la gestion de base de données, les analyses et l'infrastructure.</li>
+        <li><strong>Anthropic Claude AI :</strong> Pour générer des recettes personnalisées.</li>
+        <li><strong>Apple Sign In :</strong> Pour l'authentification sécurisée.</li>
+        <li><strong>Apple App Store :</strong> Toutes les transactions financières sont traitées par Apple.</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>4. Comment nous utilisons vos données</h2>
+      <ul>
+        <li>Pour générer des recettes AI personnalisées basées sur vos ingrédients et profil alimentaire</li>
+        <li>Pour sauvegarder et synchroniser votre historique de recettes sur tous les appareils</li>
+        <li>Pour améliorer les performances de l'app et l'expérience utilisateur</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>5. Conservation des données</h2>
+      <p>Nous conservons vos données tant que votre compte est actif. Vous pouvez demander la suppression de votre compte et des données associées à tout moment en nous contactant.</p>
+    </div>
+    <div class="section">
+      <h2>6. Confidentialité des enfants</h2>
+      <p>Kitchen Alone n'est pas destiné aux enfants de moins de 13 ans. Nous ne collectons pas sciemment d'informations personnelles auprès d'enfants de moins de 13 ans.</p>
+    </div>
+    <div class="section">
+      <h2>7. Vos droits</h2>
+      <ul>
+        <li>Accéder aux données personnelles que nous détenons sur vous</li>
+        <li>Demander la correction de données inexactes</li>
+        <li>Demander la suppression de vos données</li>
+        <li>Retirer votre consentement à tout moment</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>8. Nous contacter</h2>
+      <div class="contact-box">
+        <p>Si vous avez des questions sur cette Politique de Confidentialité, contactez-nous :<br>
+        <a href="mailto:support@kitchenalone.app">support@kitchenalone.app</a></p>
+      </div>
+    </div>`
+};
+
+function setLang(lang) {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+  document.getElementById('content').innerHTML = content[lang];
+}
+
+setLang('en');
+</script>
+</body>
+</html>

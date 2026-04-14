@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support — Kitchen Alone</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0F1A0F; --surface: #1e3a1e; --gold: #FFC840;
+    --green: #4CAF50; --text: #ffffff; --subtext: #6a9a6a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; }
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 48px; border-bottom: 1px solid rgba(255,200,64,0.1);
+    position: sticky; top: 0; background: rgba(15,26,15,0.95);
+    backdrop-filter: blur(10px); z-index: 100;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-logo img { width: 40px; height: 40px; object-fit: contain; }
+  .nav-logo span { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--gold); font-weight: 700; }
+  .lang-switcher { display: flex; gap: 8px; }
+  .lang-btn {
+    background: none; border: 1px solid rgba(255,200,64,0.2); color: var(--subtext);
+    padding: 4px 10px; border-radius: 20px; cursor: pointer; font-size: 12px;
+    font-family: 'DM Sans', sans-serif; transition: all 0.2s;
+  }
+  .lang-btn.active, .lang-btn:hover { background: var(--gold); color: #111; border-color: var(--gold); }
+  .content { max-width: 760px; margin: 0 auto; padding: 60px 24px 80px; }
+  .page-title {
+    font-family: 'Playfair Display', serif; font-size: clamp(32px, 5vw, 52px);
+    font-weight: 900; color: var(--gold); margin-bottom: 8px;
+  }
+  .subtitle { color: var(--subtext); font-size: 16px; margin-bottom: 48px; line-height: 1.6; }
+  .contact-card {
+    background: var(--surface); border: 1px solid rgba(255,200,64,0.3);
+    border-radius: 20px; padding: 36px; margin-bottom: 32px; text-align: center;
+  }
+  .contact-card .icon { font-size: 48px; margin-bottom: 16px; }
+  .contact-card h2 { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--gold); margin-bottom: 10px; }
+  .contact-card p { color: var(--subtext); font-size: 15px; line-height: 1.6; margin-bottom: 20px; }
+  .contact-btn {
+    display: inline-block; background: var(--gold); color: #111;
+    padding: 12px 28px; border-radius: 12px; font-weight: 700;
+    text-decoration: none; font-size: 15px; transition: transform 0.2s;
+  }
+  .contact-btn:hover { transform: scale(1.04); }
+  .faq { margin-top: 48px; }
+  .faq h2 { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--green); margin-bottom: 24px; }
+  .faq-item {
+    background: var(--surface); border: 1px solid rgba(76,175,80,0.2);
+    border-radius: 14px; padding: 20px 24px; margin-bottom: 12px;
+  }
+  .faq-item h3 { color: var(--gold); font-size: 16px; margin-bottom: 8px; }
+  .faq-item p { color: #ccc; font-size: 14px; line-height: 1.6; }
+  footer {
+    border-top: 1px solid rgba(255,200,64,0.1); padding: 32px 48px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+  }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { color: var(--subtext); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-copy { color: var(--subtext); font-size: 13px; }
+  @media (max-width: 640px) {
+    nav { padding: 16px 20px; }
+    footer { padding: 24px 20px; flex-direction: column; text-align: center; }
+    .footer-links { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="logo.png" alt="Kitchen Alone">
+    <span>Kitchen Alone</span>
+  </a>
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('ru')">RU</button>
+    <button class="lang-btn" onclick="setLang('es')">ES</button>
+    <button class="lang-btn" onclick="setLang('fr')">FR</button>
+  </div>
+</nav>
+
+<div class="content" id="content"></div>
+
+<footer>
+  <div class="footer-links">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="support.html">Support</a>
+    <a href="index.html">Home</a>
+  </div>
+  <p class="footer-copy">© 2026 Kitchen Alone. All rights reserved.</p>
+</footer>
+
+<script>
+const content = {
+  en: `
+    <h1 class="page-title">Support</h1>
+    <p class="subtitle">We're here to help. Reach out to us and we'll get back to you as soon as possible.</p>
+    <div class="contact-card">
+      <div class="icon">✉️</div>
+      <h2>Email Support</h2>
+      <p>Have a question or found a bug? Send us an email and we'll respond within 24 hours.</p>
+      <a class="contact-btn" href="mailto:support@kitchenalone.app">support@kitchenalone.app</a>
+    </div>
+    <div class="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h3>How does Kitchen Alone generate recipes?</h3>
+        <p>Kitchen Alone uses Claude AI by Anthropic to generate personalised recipes based on your selected ingredients, appliance, and dietary profile.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How do I save my recipes?</h3>
+        <p>Tap "Save Recipe" on any recipe screen. If you're not signed in, you'll be prompted to Sign in with Apple to save your recipes to your profile.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How do I change my dietary profile?</h3>
+        <p>Tap the gear icon on the ingredients screen, then select your profile from Settings. Your ingredient list and recipes will update automatically.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How do I delete my account?</h3>
+        <p>To delete your account and all associated data, please email us at support@kitchenalone.app with the subject "Delete My Account".</p>
+      </div>
+      <div class="faq-item">
+        <h3>What appliances are supported?</h3>
+        <p>Currently Kitchen Alone supports Microwave, Air Fryer, and Toaster. More appliances will be added in future updates.</p>
+      </div>
+    </div>`,
+
+  ru: `
+    <h1 class="page-title">Поддержка</h1>
+    <p class="subtitle">Мы здесь чтобы помочь. Напишите нам и мы ответим как можно скорее.</p>
+    <div class="contact-card">
+      <div class="icon">✉️</div>
+      <h2>Поддержка по email</h2>
+      <p>Есть вопрос или нашли ошибку? Напишите нам и мы ответим в течение 24 часов.</p>
+      <a class="contact-btn" href="mailto:support@kitchenalone.app">support@kitchenalone.app</a>
+    </div>
+    <div class="faq">
+      <h2>Часто задаваемые вопросы</h2>
+      <div class="faq-item">
+        <h3>Как Kitchen Alone генерирует рецепты?</h3>
+        <p>Kitchen Alone использует Claude AI от Anthropic для генерации персональных рецептов на основе ваших ингредиентов, прибора и профиля питания.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Как сохранить рецепт?</h3>
+        <p>Нажмите "Сохранить рецепт" на экране рецепта. Если вы не вошли в систему, вам будет предложено войти через Apple.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Как изменить профиль питания?</h3>
+        <p>Нажмите иконку шестерёнки на экране ингредиентов, затем выберите профиль в Настройках.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Как удалить аккаунт?</h3>
+        <p>Для удаления аккаунта и всех связанных данных напишите нам на support@kitchenalone.app с темой "Удалить мой аккаунт".</p>
+      </div>
+      <div class="faq-item">
+        <h3>Какие приборы поддерживаются?</h3>
+        <p>Сейчас Kitchen Alone поддерживает Микроволновку, Аэрофритюрницу и Тостер. Больше приборов появится в будущих обновлениях.</p>
+      </div>
+    </div>`,
+
+  es: `
+    <h1 class="page-title">Soporte</h1>
+    <p class="subtitle">Estamos aquí para ayudar. Contáctanos y te responderemos lo antes posible.</p>
+    <div class="contact-card">
+      <div class="icon">✉️</div>
+      <h2>Soporte por email</h2>
+      <p>¿Tienes una pregunta o encontraste un error? Envíanos un email y responderemos en 24 horas.</p>
+      <a class="contact-btn" href="mailto:support@kitchenalone.app">support@kitchenalone.app</a>
+    </div>
+    <div class="faq">
+      <h2>Preguntas frecuentes</h2>
+      <div class="faq-item">
+        <h3>¿Cómo genera recetas Kitchen Alone?</h3>
+        <p>Kitchen Alone usa Claude AI de Anthropic para generar recetas personalizadas basadas en tus ingredientes, electrodoméstico y perfil dietético.</p>
+      </div>
+      <div class="faq-item">
+        <h3>¿Cómo guardo mis recetas?</h3>
+        <p>Toca "Guardar receta" en cualquier pantalla de receta. Si no has iniciado sesión, se te pedirá que inicies sesión con Apple.</p>
+      </div>
+      <div class="faq-item">
+        <h3>¿Cómo cambio mi perfil dietético?</h3>
+        <p>Toca el ícono de engranaje en la pantalla de ingredientes, luego selecciona tu perfil en Configuración.</p>
+      </div>
+      <div class="faq-item">
+        <h3>¿Cómo elimino mi cuenta?</h3>
+        <p>Para eliminar tu cuenta y todos los datos asociados, envíanos un email a support@kitchenalone.app con el asunto "Eliminar mi cuenta".</p>
+      </div>
+      <div class="faq-item">
+        <h3>¿Qué electrodomésticos son compatibles?</h3>
+        <p>Actualmente Kitchen Alone soporta Microondas, Freidora de aire y Tostadora. Se agregarán más en futuras actualizaciones.</p>
+      </div>
+    </div>`,
+
+  fr: `
+    <h1 class="page-title">Support</h1>
+    <p class="subtitle">Nous sommes là pour vous aider. Contactez-nous et nous vous répondrons dès que possible.</p>
+    <div class="contact-card">
+      <div class="icon">✉️</div>
+      <h2>Support par email</h2>
+      <p>Vous avez une question ou trouvé un bug ? Envoyez-nous un email et nous répondrons dans les 24 heures.</p>
+      <a class="contact-btn" href="mailto:support@kitchenalone.app">support@kitchenalone.app</a>
+    </div>
+    <div class="faq">
+      <h2>Questions fréquentes</h2>
+      <div class="faq-item">
+        <h3>Comment Kitchen Alone génère-t-il des recettes ?</h3>
+        <p>Kitchen Alone utilise Claude AI d'Anthropic pour générer des recettes personnalisées basées sur vos ingrédients, appareil et profil alimentaire.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Comment sauvegarder mes recettes ?</h3>
+        <p>Appuyez sur "Sauvegarder la recette" sur n'importe quel écran de recette. Si vous n'êtes pas connecté, il vous sera demandé de vous connecter avec Apple.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Comment modifier mon profil alimentaire ?</h3>
+        <p>Appuyez sur l'icône d'engrenage sur l'écran des ingrédients, puis sélectionnez votre profil dans Paramètres.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Comment supprimer mon compte ?</h3>
+        <p>Pour supprimer votre compte et toutes les données associées, envoyez-nous un email à support@kitchenalone.app avec l'objet "Supprimer mon compte".</p>
+      </div>
+      <div class="faq-item">
+        <h3>Quels appareils sont supportés ?</h3>
+        <p>Actuellement Kitchen Alone supporte le Micro-ondes, la Friteuse à air et le Grille-pain. D'autres appareils seront ajoutés dans les prochaines mises à jour.</p>
+      </div>
+    </div>`
+};
+
+function setLang(lang) {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+  document.getElementById('content').innerHTML = content[lang];
+}
+
+setLang('en');
+</script>
+</body>
+</html>
