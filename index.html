@@ -30,12 +30,31 @@
     word-wrap: break-word;
   }
 
+  .food-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .food-item {
+    position: absolute;
+    opacity: 0.06;
+    animation: foodFloat ease-in-out infinite;
+    user-select: none;
+    line-height: 1;
+  }
+  @keyframes foodFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-18px) rotate(12deg); }
+  }
+
   .site-nav {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 200;
+    z-index: 201;
     background: rgba(15,26,15,0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(255,200,64,0.1);
@@ -186,6 +205,30 @@
     position: relative;
     max-width: 1200px;
     margin: 0 auto;
+    z-index: 1;
+  }
+  .hero-logo-wrap {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+  .hero-logo-wrap .hero-logo {
+    margin-bottom: 0;
+  }
+  .fi {
+    position: absolute;
+    font-size: 24px;
+    animation: fiFloat ease-in-out infinite;
+    pointer-events: none;
+    opacity: 0.9;
+  }
+  .fi-1 { top: -8px; right: -32px; animation-duration: 5s; animation-delay: 0s; }
+  .fi-2 { bottom: 4px; right: -36px; animation-duration: 6s; animation-delay: 1.2s; }
+  .fi-3 { top: 4px; left: -36px; animation-duration: 5.5s; animation-delay: 0.6s; }
+  .fi-4 { bottom: -4px; left: -28px; animation-duration: 7s; animation-delay: 1.8s; }
+  @keyframes fiFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(14deg); }
   }
   .hero-logo {
     width: min(100%, 160px);
@@ -258,6 +301,16 @@
   }
   .app-badge:hover { transform: scale(1.04); }
 
+  .section-label {
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #d4af37;
+    margin-bottom: 10px;
+    opacity: 0.85;
+  }
+
   .features {
     display: grid;
     grid-template-columns: 1fr;
@@ -265,6 +318,11 @@
     padding: clamp(40px, 8vw, 100px) clamp(16px, 4vw, 40px);
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .features > .section-label {
+    grid-column: 1 / -1;
   }
   @media (min-width: 640px) {
     .features { grid-template-columns: repeat(2, 1fr); }
@@ -277,14 +335,15 @@
     background: var(--surface);
     border: 1px solid rgba(76,175,80,0.2);
     border-radius: 20px;
-    transition: transform 0.2s, border-color 0.2s;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
   }
   @media (min-width: 900px) {
     #features .feature-card { padding: 28px; }
   }
   #features .feature-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--gold);
+    transform: translateY(-5px);
+    border-color: rgba(212,175,55,0.45);
+    box-shadow: 0 12px 36px rgba(212,175,55,0.1);
   }
   #features .feature-icon {
     font-size: 2rem;
@@ -318,6 +377,12 @@
     padding: clamp(40px, 8vw, 100px) clamp(16px, 4vw, 40px);
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .wave-wrap {
+    position: relative;
+    z-index: 1;
   }
   .pricing-headline {
     font-family: 'Playfair Display', serif;
@@ -390,8 +455,13 @@
     .pricing-scroll-outer::after { display: none; }
   }
   .pricing-card-popular {
+    transform: scale(1.03);
+    border-width: 2px !important;
     border-color: var(--gold);
-    box-shadow: 0 0 0 1px rgba(255,200,64,0.35);
+    box-shadow: 0 0 40px rgba(212,175,55,0.12);
+  }
+  .pricing-card-popular:hover {
+    transform: scale(1.03) translateY(-4px);
   }
   .pricing-badge {
     position: absolute;
@@ -468,6 +538,8 @@
     gap: 16px;
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
   }
   .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
   .footer-links a {
@@ -494,6 +566,19 @@
 </style>
 </head>
 <body>
+
+<div class="food-bg" aria-hidden="true">
+  <span class="food-item" style="top:6%;left:4%;font-size:28px;animation-duration:8s;">🍅</span>
+  <span class="food-item" style="top:12%;left:90%;font-size:22px;animation-duration:11s;">🧄</span>
+  <span class="food-item" style="top:30%;left:2%;font-size:26px;animation-duration:9s;">🥕</span>
+  <span class="food-item" style="top:50%;left:94%;font-size:20px;animation-duration:13s;">🫑</span>
+  <span class="food-item" style="top:65%;left:6%;font-size:24px;animation-duration:10s;">🧅</span>
+  <span class="food-item" style="top:78%;left:88%;font-size:28px;animation-duration:7s;">🥦</span>
+  <span class="food-item" style="top:22%;left:48%;font-size:18px;animation-duration:14s;">🌿</span>
+  <span class="food-item" style="top:88%;left:42%;font-size:22px;animation-duration:12s;">🍋</span>
+  <span class="food-item" style="top:42%;left:96%;font-size:20px;animation-duration:16s;">🌶️</span>
+  <span class="food-item" style="top:95%;left:15%;font-size:24px;animation-duration:9s;">🍄</span>
+</div>
 
 <nav class="site-nav" id="siteNav">
   <div class="nav-bar">
@@ -526,7 +611,13 @@
 </nav>
 
 <section class="hero">
-  <img class="hero-logo" src="logo.png" alt="Kitchen Alone">
+  <div class="hero-logo-wrap">
+    <img class="hero-logo" src="logo.png" alt="Kitchen Alone">
+    <span class="fi fi-1" aria-hidden="true">🍅</span>
+    <span class="fi fi-2" aria-hidden="true">🧄</span>
+    <span class="fi fi-3" aria-hidden="true">🥕</span>
+    <span class="fi fi-4" aria-hidden="true">🌿</span>
+  </div>
   <h1 class="hero-headline">
     <span class="hero-line1" data-i18n="hero_line1">Stop eating eggs every day.</span>
     <span class="hero-line2" data-i18n="hero_line2">Never Alone with Kitchen Alone.</span>
@@ -536,6 +627,7 @@
 </section>
 
 <section class="features" id="features">
+  <p class="section-label" data-i18n="section_features_label">✦ What's inside</p>
   <div class="feature-card">
     <div class="feature-icon"><img src="icons/icon_cook.png" alt="Dietary Profiles" class="feature-icon-img"></div>
     <h3 data-i18n="feat_dietary_title">Dietary Profiles</h3>
@@ -598,13 +690,30 @@
   </div>
 </section>
 
+<div class="wave-wrap" aria-hidden="true">
+  <svg viewBox="0 0 1440 48" preserveAspectRatio="none"
+       style="width:100%;height:48px;display:block;">
+    <path d="M0,24 C360,48 1080,0 1440,24 L1440,48 L0,48 Z"
+          fill="rgba(212,175,55,0.07)"/>
+  </svg>
+</div>
+
 <section id="pricing" class="pricing-section">
+  <p class="section-label" data-i18n="section_pricing_label">✦ Plans</p>
   <h2 class="pricing-headline" data-i18n="pricing_headline">Plans for Every Kitchen</h2>
   <p class="pricing-subtitle" data-i18n="pricing_subtitle">Start free. Upgrade when you're ready.</p>
   <div class="pricing-scroll-outer">
     <div class="pricing-row" id="pricing-cards"></div>
   </div>
 </section>
+
+<div class="wave-wrap" aria-hidden="true">
+  <svg viewBox="0 0 1440 48" preserveAspectRatio="none"
+       style="width:100%;height:48px;display:block;transform:rotate(180deg);">
+    <path d="M0,24 C360,48 1080,0 1440,24 L1440,48 L0,48 Z"
+          fill="rgba(212,175,55,0.07)"/>
+  </svg>
+</div>
 
 <footer>
   <div class="footer-links">
@@ -618,6 +727,7 @@
 const i18n = {
   en: {
     nav_features: "Features", nav_pricing: "Pricing", nav_privacy: "Privacy Policy", nav_support: "Support",
+    section_features_label: "✦ What's inside", section_pricing_label: "✦ Plans",
     hero_line1: "Stop eating eggs every day.",
     hero_line2: "Never Alone with Kitchen Alone.",
     hero_subtitle: "AI recipes from whatever's in your kitchen — tailored to you, ready in seconds.",
@@ -638,6 +748,7 @@ const i18n = {
   },
   ru: {
     nav_features: "Функции", nav_pricing: "Тарифы", nav_privacy: "Политика конфиденциальности", nav_support: "Поддержка",
+    section_features_label: "✦ Что внутри", section_pricing_label: "✦ Тарифы",
     hero_line1: "Хватит есть яичницу каждый день.",
     hero_line2: "Ты никогда не один с Kitchen Alone.",
     hero_subtitle: "AI рецепты из того, что есть у тебя на кухне — под тебя, за секунды.",
@@ -658,6 +769,7 @@ const i18n = {
   },
   es: {
     nav_features: "Funciones", nav_pricing: "Precios", nav_privacy: "Política de privacidad", nav_support: "Soporte",
+    section_features_label: "✦ Qué incluye", section_pricing_label: "✦ Planes",
     hero_line1: "Deja de comer huevos todos los días.",
     hero_line2: "Nunca estás solo con Kitchen Alone.",
     hero_subtitle: "Recetas con IA de lo que tengas en tu cocina — hechas para ti, en segundos.",
@@ -678,6 +790,7 @@ const i18n = {
   },
   fr: {
     nav_features: "Fonctionnalités", nav_pricing: "Tarifs", nav_privacy: "Politique de confidentialité", nav_support: "Support",
+    section_features_label: "✦ Ce qui est inclus", section_pricing_label: "✦ Plans",
     hero_line1: "Arrêtez de manger des œufs tous les jours.",
     hero_line2: "Jamais seul avec Kitchen Alone.",
     hero_subtitle: "Des recettes IA avec ce que vous avez dans votre cuisine — faites pour vous, en secondes.",
