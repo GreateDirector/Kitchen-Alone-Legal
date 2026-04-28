@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Use — Kitchen Alone</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0F1A0F; --surface: #1e3a1e; --gold: #FFC840;
+    --green: #4CAF50; --text: #ffffff; --subtext: #6a9a6a;
+    --nav-h: 72px;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { overflow-x: hidden; }
+  body {
+    background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif;
+    font-size: max(14px, 0.875rem); line-height: 1.5;
+    padding-top: var(--nav-h); overflow-x: hidden;
+    overflow-wrap: break-word; word-wrap: break-word;
+  }
+  .site-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    background: rgba(15,26,15,0.95); backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,200,64,0.1);
+  }
+  .nav-bar {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    padding: 12px clamp(16px, 4vw, 40px); min-height: 56px;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; cursor: pointer; min-height: 44px; }
+  .nav-logo img { width: clamp(36px, 10vw, 44px); height: clamp(36px, 10vw, 44px); object-fit: contain; }
+  .nav-logo span { font-family: 'Playfair Display', serif; font-size: clamp(16px, 4vw, 20px); color: var(--gold); font-weight: 700; }
+  .nav-links { display: flex; gap: clamp(16px, 3vw, 32px); list-style: none; align-items: center; flex-wrap: wrap; }
+  .nav-links a {
+    color: var(--subtext); text-decoration: none; font-size: max(14px, 0.875rem); font-weight: 500;
+    transition: color 0.2s; cursor: pointer; min-height: 44px;
+    display: inline-flex; align-items: center; padding: 6px 4px;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-toggle {
+    display: none; align-items: center; justify-content: center;
+    width: 44px; height: 44px; padding: 0;
+    border: 1px solid rgba(255,200,64,0.25); border-radius: 12px;
+    background: transparent; color: var(--gold); font-size: 22px; cursor: pointer; flex-shrink: 0;
+  }
+  .nav-mobile-panel { display: none; width: 100%; border-top: 1px solid rgba(255,200,64,0.1);
+    padding: 12px clamp(16px, 4vw, 40px) 16px; background: rgba(12, 22, 12, 0.98); }
+  .site-nav.nav-open .nav-mobile-panel { display: block; }
+  .nav-mobile-panel .nav-links { flex-direction: column; align-items: stretch; gap: 0; }
+  .nav-mobile-panel .nav-links li { border-bottom: 1px solid rgba(255,200,64,0.08); }
+  .nav-mobile-panel .nav-links a { display: flex; width: 100%; padding: 14px 8px; min-height: 48px; }
+  .lang-switcher { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; justify-content: flex-end; }
+  .lang-btn {
+    background: none; border: 1px solid rgba(255,200,64,0.2); color: var(--subtext);
+    padding: 8px 12px; border-radius: 20px; cursor: pointer;
+    font-size: max(12px, 0.75rem); font-family: 'DM Sans', sans-serif; transition: all 0.2s;
+    min-height: 36px; min-width: 36px;
+  }
+  .lang-btn.active, .lang-btn:hover { background: var(--gold); color: #111; border-color: var(--gold); }
+  @media (max-width: 639px) {
+    .nav-links-desktop { display: none !important; }
+    .nav-toggle { display: inline-flex; }
+  }
+  @media (min-width: 640px) {
+    .nav-toggle { display: none !important; }
+    .nav-mobile-panel { display: none !important; }
+    .site-nav.nav-open .nav-mobile-panel { display: none !important; }
+    .nav-links-desktop { display: flex !important; }
+    .lang-btn { min-height: 40px; min-width: 40px; }
+    :root { --nav-h: 76px; }
+  }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--gold); outline-offset: 2px;
+  }
+  .content {
+    max-width: 800px; margin: 0 auto;
+    padding: clamp(40px, 8vw, 80px) clamp(16px, 4vw, 40px);
+  }
+  .page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 52px); font-weight: 900; color: var(--gold);
+    margin-bottom: 8px; line-height: 1.2;
+  }
+  .effective-date { color: var(--subtext); font-size: max(14px, 0.875rem); margin-bottom: 48px; line-height: 1.5; }
+  .section { margin-bottom: 40px; }
+  .section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 3vw, 24px); line-height: 1.2;
+    color: var(--green); margin-bottom: 12px;
+    padding-bottom: 8px; border-bottom: 1px solid rgba(76,175,80,0.2);
+  }
+  .section p {
+    color: #ccc; line-height: 1.5;
+    font-size: clamp(14px, 2vw, 16px); margin-bottom: 12px;
+  }
+  .section ul { padding-left: 20px; }
+  .section ul li {
+    color: #ccc; line-height: 1.5;
+    font-size: clamp(14px, 2vw, 16px); margin-bottom: 6px;
+  }
+  .section ul li strong { color: var(--gold); }
+  .contact-box {
+    background: var(--surface); border: 1px solid rgba(255,200,64,0.2);
+    border-radius: 16px; padding: 24px; margin-top: 16px;
+  }
+  .contact-box a { color: var(--gold); text-decoration: none; cursor: pointer; min-height: 44px; display: inline-flex; align-items: center; }
+  footer {
+    border-top: 1px solid rgba(255,200,64,0.1);
+    padding: clamp(32px, 6vw, 40px) clamp(16px, 4vw, 40px);
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+  .footer-links a {
+    color: var(--subtext); text-decoration: none; font-size: max(14px, 0.875rem);
+    transition: color 0.2s; cursor: pointer; min-height: 44px;
+    display: inline-flex; align-items: center; padding: 4px 2px;
+  }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-copy { color: var(--subtext); font-size: max(14px, 0.875rem); line-height: 1.5; }
+  @media (max-width: 639px) {
+    footer { flex-direction: column; text-align: center; }
+    .footer-links { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav" id="siteNav">
+  <div class="nav-bar">
+    <a class="nav-logo" href="index.html">
+      <img src="logo.png" alt="Kitchen Alone">
+      <span>Kitchen Alone</span>
+    </a>
+    <ul class="nav-links nav-links-desktop">
+      <li><a href="index.html#features" data-i18n="nav_features">Features</a></li>
+      <li><a href="index.html#pricing" data-i18n="nav_pricing">Pricing</a></li>
+      <li><a href="privacy.html" data-i18n="nav_privacy">Privacy Policy</a></li>
+      <li><a href="support.html" data-i18n="nav_support">Support</a></li>
+    </ul>
+    <button type="button" class="nav-toggle" id="navToggle" onclick="toggleNav()" aria-expanded="false" aria-controls="navMobilePanel" aria-label="Open menu">☰</button>
+    <div class="lang-switcher">
+      <button type="button" class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button type="button" class="lang-btn" onclick="setLang('ru')">RU</button>
+      <button type="button" class="lang-btn" onclick="setLang('es')">ES</button>
+      <button type="button" class="lang-btn" onclick="setLang('fr')">FR</button>
+    </div>
+  </div>
+  <div class="nav-mobile-panel" id="navMobilePanel" hidden>
+    <ul class="nav-links">
+      <li><a href="index.html#features" data-i18n="nav_features" onclick="closeNav()">Features</a></li>
+      <li><a href="index.html#pricing" data-i18n="nav_pricing" onclick="closeNav()">Pricing</a></li>
+      <li><a href="privacy.html" data-i18n="nav_privacy" onclick="closeNav()">Privacy Policy</a></li>
+      <li><a href="support.html" data-i18n="nav_support" onclick="closeNav()">Support</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="content" id="termsContent">
+  <h1 class="page-title">Terms of Use</h1>
+  <p class="effective-date">Effective Date: April 12, 2026</p>
+
+  <div class="section">
+    <h2>1. Subscription Terms</h2>
+    <p>Kitchen Alone offers auto-renewing subscriptions with the following titles and recurring prices (USD):</p>
+    <ul>
+      <li><strong>Kitchen Alone — Free:</strong> $0 per month.</li>
+      <li><strong>Starter:</strong> $0.99 per month.</li>
+      <li><strong>Home Cook:</strong> $2.99 per month.</li>
+      <li><strong>Pro Cook:</strong> $6.99 per month.</li>
+      <li><strong>Family Plan:</strong> $9.99 per month.</li>
+    </ul>
+    <p>Annual billing options may be offered at <strong>$19.99</strong>, <strong>$49.99</strong>, or <strong>$69.99</strong> per year depending on the plan and promotions available at the time of purchase. Exact pricing is displayed in the app before you confirm.</p>
+    <ul>
+      <li>Subscriptions automatically renew unless cancelled at least <strong>24 hours before</strong> the end of the current period.</li>
+      <li>Payment will be charged to your Apple ID account at confirmation of purchase.</li>
+      <li>You can manage or cancel your subscription at any time in the App Store account settings: App Store → your profile → Subscriptions.</li>
+      <li>A <strong>7-day free trial</strong> may be offered for <strong>Home Cook</strong> and <strong>Pro Cook</strong> where eligible; terms shown at signup apply.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>2. Acceptable Use</h2>
+    <ul>
+      <li>The app is for <strong>personal, non-commercial</strong> use only.</li>
+      <li>You must not misuse AI recipe generation to request harmful, illegal, or abusive content.</li>
+      <li>You must be <strong>at least 13 years old</strong> to use Kitchen Alone.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>3. AI-Generated Content Disclaimer</h2>
+    <ul>
+      <li>Recipes are generated by artificial intelligence and are provided for <strong>informational purposes</strong> only.</li>
+      <li>Always follow safe food handling and cooking practices and applicable food safety guidelines.</li>
+      <li>Kitchen Alone and Rebushar LLC are <strong>not liable</strong> for illness, injury, or unsatisfactory outcomes from preparing or consuming AI-suggested recipes.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>4. Intellectual Property</h2>
+    <ul>
+      <li>The Kitchen Alone app, branding, and materials are owned by <strong>Rebushar LLC</strong> or its licensors.</li>
+      <li>Recipes generated for you are licensed for your <strong>personal, non-commercial</strong> use within the app.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>5. Limitation of Liability</h2>
+    <p>The service is provided <strong>“as is”</strong> without warranties of any kind, express or implied. To the fullest extent permitted by law, <strong>Rebushar LLC</strong> shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or data, arising from your use of the app.</p>
+  </div>
+
+  <div class="section">
+    <h2>6. Governing Law</h2>
+    <p>These Terms are governed by the laws of the <strong>State of California, United States</strong>, without regard to conflict-of-law principles.</p>
+  </div>
+
+  <div class="section">
+    <h2>7. Contact</h2>
+    <div class="contact-box">
+      <p>Support: <a href="https://kitchenalone.com/support">kitchenalone.com/support</a></p>
+      <p>Email: <a href="mailto:aloneinkitchen@gmail.com">aloneinkitchen@gmail.com</a></p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>8. Privacy Policy</h2>
+    <div class="contact-box">
+      <p>Our Privacy Policy explains how we collect and use personal information. Read it here:<br>
+      <a href="https://kitchenalone.com/privacy">https://kitchenalone.com/privacy</a></p>
+      <p>You may also open the policy on this site:<br>
+      <a href="privacy.html">privacy.html</a></p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="privacy.html" data-i18n="footer_privacy">Privacy Policy</a>
+    <a href="terms.html" data-i18n="footer_terms">Terms of Use</a>
+    <a href="support.html" data-i18n="footer_support">Support</a>
+    <a href="index.html" data-i18n="footer_home">Home</a>
+  </div>
+  <p class="footer-copy">© 2026 Kitchen Alone by Rebushar LLC. All rights reserved.</p>
+</footer>
+
+<script>
+const navI18n = {
+  en: { nav_features: "Features", nav_pricing: "Pricing", nav_privacy: "Privacy Policy", nav_support: "Support" },
+  ru: { nav_features: "Функции", nav_pricing: "Тарифы", nav_privacy: "Политика конфиденциальности", nav_support: "Поддержка" },
+  es: { nav_features: "Funciones", nav_pricing: "Precios", nav_privacy: "Política de privacidad", nav_support: "Soporte" },
+  fr: { nav_features: "Fonctionnalités", nav_pricing: "Tarifs", nav_privacy: "Politique de confidentialité", nav_support: "Support" }
+};
+
+const footerI18n = {
+  en: { footer_privacy: "Privacy Policy", footer_terms: "Terms of Use", footer_support: "Support", footer_home: "Home" },
+  ru: { footer_privacy: "Политика конфиденциальности", footer_terms: "Условия использования", footer_support: "Поддержка", footer_home: "Главная" },
+  es: { footer_privacy: "Política de privacidad", footer_terms: "Términos de uso", footer_support: "Soporte", footer_home: "Inicio" },
+  fr: { footer_privacy: "Politique de confidentialité", footer_terms: "Conditions d'utilisation", footer_support: "Support", footer_home: "Accueil" }
+};
+
+function toggleNav() {
+  var nav = document.getElementById('siteNav');
+  var panel = document.getElementById('navMobilePanel');
+  var btn = document.getElementById('navToggle');
+  if (!nav || !panel || !btn) return;
+  var open = nav.classList.toggle('nav-open');
+  btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  panel.hidden = !open;
+}
+
+function closeNav() {
+  var nav = document.getElementById('siteNav');
+  var panel = document.getElementById('navMobilePanel');
+  var btn = document.getElementById('navToggle');
+  if (nav) nav.classList.remove('nav-open');
+  if (panel) panel.hidden = true;
+  if (btn) {
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-label', 'Open menu');
+  }
+}
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') closeNav();
+});
+
+function setLang(lang) {
+  document.documentElement.lang = lang;
+  closeNav();
+  document.querySelectorAll('.lang-btn').forEach(function (b) { b.classList.remove('active'); });
+  document.querySelector('.lang-btn[onclick="setLang(\'' + lang + '\')"]').classList.add('active');
+  document.querySelectorAll('footer [data-i18n]').forEach(function (el) {
+    var key = el.getAttribute('data-i18n');
+    if (footerI18n[lang] && footerI18n[lang][key]) el.textContent = footerI18n[lang][key];
+  });
+  document.querySelectorAll('.site-nav [data-i18n]').forEach(function (el) {
+    var key = el.getAttribute('data-i18n');
+    if (navI18n[lang] && navI18n[lang][key]) el.textContent = navI18n[lang][key];
+  });
+}
+
+setLang('en');
+</script>
+</body>
+</html>
