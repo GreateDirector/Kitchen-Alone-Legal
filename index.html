@@ -556,6 +556,70 @@
   .footer-links a:hover { color: var(--gold); }
   .footer-copy { color: var(--subtext); font-size: max(14px, 0.875rem); line-height: 1.5; }
 
+  .hero-recipe-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .recipe-card-decor {
+    position: absolute;
+    width: 150px;
+    background: rgba(240,236,224,0.025);
+    border: 1px solid rgba(212,175,55,0.08);
+    border-radius: 10px;
+    padding: 10px 12px;
+    pointer-events: none;
+    animation: rcFloat ease-in-out infinite;
+  }
+  .rcd-title {
+    height: 7px;
+    background: rgba(212,175,55,0.2);
+    border-radius: 3px;
+    margin-bottom: 8px;
+    width: 70%;
+  }
+  .rcd-line {
+    height: 5px;
+    background: rgba(240,236,224,0.08);
+    border-radius: 2px;
+    margin-bottom: 5px;
+  }
+  .rcd-line.full { width: 100%; }
+  .rcd-line.med { width: 75%; }
+  .rcd-line.short { width: 50%; }
+  .rcd-tags {
+    display: flex;
+    gap: 4px;
+    margin-top: 8px;
+  }
+  .rcd-tag {
+    height: 7px;
+    width: 36px;
+    background: rgba(212,175,55,0.1);
+    border-radius: 3px;
+  }
+  @keyframes rcFloat {
+    0%, 100% { transform: var(--rc-base) translateY(0px); }
+    50% { transform: var(--rc-base) translateY(-10px); }
+  }
+
+  .feat-barcode-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .hero {
+    overflow: hidden;
+  }
+  .features {
+    overflow: hidden;
+  }
+
   @media (min-width: 640px) {
     :root { --nav-h: 76px; }
   }
@@ -611,6 +675,7 @@
 </nav>
 
 <section class="hero">
+  <div class="hero-recipe-bg" aria-hidden="true" id="heroRecipeBg"></div>
   <div class="hero-logo-wrap">
     <img class="hero-logo" src="logo.png" alt="Kitchen Alone">
     <span class="fi fi-1" aria-hidden="true">🍅</span>
@@ -627,6 +692,7 @@
 </section>
 
 <section class="features" id="features">
+  <div class="feat-barcode-bg" aria-hidden="true" id="featBarcodeBg"></div>
   <p class="section-label" data-i18n="section_features_label">✦ What's inside</p>
   <div class="feature-card">
     <div class="feature-icon"><img src="icons/icon_cook.png" alt="Dietary Profiles" class="feature-icon-img"></div>
@@ -903,6 +969,82 @@ function setLang(lang) {
     }
   });
   renderPricing(lang);
+}
+
+const heroRecipeData = [
+  { title: 70, lines: ['full','med','short'], tags: 2,
+    x:'3%',  y:'10%', rot:-10, dur:7,  del:0   },
+  { title: 60, lines: ['full','med'],         tags: 1,
+    x:'78%', y:'6%',  rot:7,   dur:9,  del:1   },
+  { title: 75, lines: ['full','med','short'], tags: 2,
+    x:'82%', y:'52%', rot:-6,  dur:8,  del:2   },
+  { title: 65, lines: ['full','short'],       tags: 1,
+    x:'1%',  y:'58%', rot:9,   dur:11, del:0.5 },
+  { title: 70, lines: ['full','med','short'], tags: 2,
+    x:'68%', y:'80%', rot:-13, dur:7,  del:1.5 },
+  { title: 60, lines: ['full','med'],         tags: 1,
+    x:'5%',  y:'78%', rot:6,   dur:10, del:3   },
+];
+
+const heroRecipeBg = document.getElementById('heroRecipeBg');
+if (heroRecipeBg) {
+  heroRecipeBg.innerHTML = heroRecipeData.map(c => `
+    <div class="recipe-card-decor"
+         style="left:${c.x};top:${c.y};
+                --rc-base:rotate(${c.rot}deg);
+                animation-duration:${c.dur}s;
+                animation-delay:${c.del}s;">
+      <div class="rcd-title" style="width:${c.title}%"></div>
+      ${c.lines.map(l=>`<div class="rcd-line ${l}"></div>`).join('')}
+      <div class="rcd-tags">
+        ${Array(c.tags).fill('<div class="rcd-tag"></div>').join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function drawBarcode(x, y, w, h, rot, opacity) {
+  const bars = [];
+  let cx = 0;
+  while (cx < w) {
+    const bw  = Math.random() > 0.6 ? 3 : Math.random() > 0.5 ? 2 : 1;
+    const gap = Math.random() > 0.5 ? 3 : 2;
+    const bh  = h * (0.65 + Math.random() * 0.35);
+    bars.push(
+      `<rect x="${cx}" y="${h - bh}" 
+             width="${bw}" height="${bh}" 
+             fill="rgba(212,175,55,1)"/>`
+    );
+    cx += bw + gap;
+  }
+  return `<g transform="translate(${x},${y}) rotate(${rot},${w/2},${h/2})"
+             opacity="${opacity}">${bars.join('')}</g>`;
+}
+
+const barcodeSpecs = [
+  { x:30,   y:30,  w:115, h:58, r:-8,  o:0.09 },
+  { x:600,  y:15,  w:130, h:65, r:6,   o:0.08 },
+  { x:700,  y:220, w:105, h:52, r:-5,  o:0.09 },
+  { x:15,   y:210, w:98,  h:49, r:4,   o:0.07 },
+  { x:320,  y:300, w:120, h:60, r:-3,  o:0.08 },
+  { x:560,  y:310, w:110, h:55, r:7,   o:0.09 },
+  { x:180,  y:80,  w:95,  h:48, r:-6,  o:0.07 },
+  { x:850,  y:120, w:125, h:62, r:5,   o:0.08 },
+];
+
+const featBg = document.getElementById('featBarcodeBg');
+if (featBg) {
+  const svgNS = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(svgNS, 'svg');
+  svg.setAttribute('width', '100%');
+  svg.setAttribute('height', '100%');
+  svg.setAttribute('viewBox', '0 0 1100 500');
+  svg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
+  svg.style.cssText = 'position:absolute;inset:0;';
+  svg.innerHTML = barcodeSpecs.map(b =>
+    drawBarcode(b.x, b.y, b.w, b.h, b.r, b.o)
+  ).join('');
+  featBg.appendChild(svg);
 }
 
 setLang('en');
