@@ -294,6 +294,13 @@
   @media (min-width: 900px) {
     #features .feature-icon { font-size: 2.5rem; }
   }
+  #features .feature-icon-img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    background: transparent;
+    border: none;
+  }
   #features .feature-card h3 {
     font-family: 'Playfair Display', serif;
     font-size: clamp(16px, 2.5vw, 20px);
@@ -530,12 +537,12 @@
 
 <section class="features" id="features">
   <div class="feature-card">
-    <div class="feature-icon">🥗</div>
+    <div class="feature-icon"><img src="icons/icon_cook.png" alt="Dietary Profiles" class="feature-icon-img"></div>
     <h3 data-i18n="feat_dietary_title">Dietary Profiles</h3>
     <p data-i18n="feat_dietary_desc">Vegan, diabetic, gluten-free and more. Every recipe adapts to your needs automatically.</p>
   </div>
   <div class="feature-card">
-    <div class="feature-icon">🤖</div>
+    <div class="feature-icon"><img src="icons/icon_myKitchen.png" alt="AI-Powered Recipes" class="feature-icon-img"></div>
     <h3 data-i18n="feat_ai_title">AI-Powered Recipes</h3>
     <p data-i18n="feat_ai_desc">Claude AI generates unique recipes from your available ingredients in seconds.</p>
   </div>
@@ -550,17 +557,17 @@
     <p data-i18n="feat_save_desc">Sign in with Apple to save your favourite recipes and access them anywhere.</p>
   </div>
   <div class="feature-card">
-    <div class="feature-icon">📅</div>
+    <div class="feature-icon"><img src="icons/icon_calendar.png" alt="Meal Planner" class="feature-icon-img"></div>
     <h3 data-i18n="feat_meal_title">Meal Planner</h3>
     <p data-i18n="feat_meal_desc">Plan your week, track calories, water intake and macros — all adapted to your dietary profile.</p>
   </div>
   <div class="feature-card">
-    <div class="feature-icon">📷</div>
+    <div class="feature-icon"><img src="icons/icon_qrscannerlast.png" alt="Scan &amp; Cook" class="feature-icon-img"></div>
     <h3 data-i18n="feat_scan_title">Scan &amp; Cook</h3>
     <p data-i18n="feat_scan_desc">Scan any product barcode — AI picks the best appliance and generates a recipe instantly.</p>
   </div>
   <div class="feature-card">
-    <div class="feature-icon">👨‍👩‍👧</div>
+    <div class="feature-icon"><img src="icons/icon_family.png" alt="Family &amp; Care Mode" class="feature-icon-img"></div>
     <h3 data-i18n="feat_family_title">Family &amp; Care Mode</h3>
     <p data-i18n="feat_family_desc">Connect up to 3 family members. Get push alerts if someone skips a meal or forgets to drink water.</p>
   </div>
