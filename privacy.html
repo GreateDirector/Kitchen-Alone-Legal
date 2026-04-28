@@ -84,16 +84,16 @@
 
 <footer>
   <div class="footer-links">
-    <a href="privacy.html">Privacy Policy</a>
-    <a href="support.html">Support</a>
-    <a href="index.html">Home</a>
+    <a href="privacy.html" data-i18n="footer_privacy">Privacy Policy</a>
+    <a href="support.html" data-i18n="footer_support">Support</a>
+    <a href="index.html" data-i18n="footer_home">Home</a>
   </div>
   <p class="footer-copy">© 2026 Kitchen Alone. All rights reserved.</p>
 </footer>
 
 <script>
 const content = {
-  en: `
+  en: { html: `
     <h1 class="page-title">Privacy Policy</h1>
     <p class="effective-date">Effective Date: April 12, 2026</p>
     <div class="section">
@@ -152,8 +152,9 @@ const content = {
         <a href="mailto:aloneinkitchen@gmail.com">aloneinkitchen@gmail.com</a></p>
       </div>
     </div>`,
-
-  ru: `
+    footer_privacy: "Privacy Policy", footer_support: "Support", footer_home: "Home"
+  },
+  ru: { html: `
     <h1 class="page-title">Политика конфиденциальности</h1>
     <p class="effective-date">Дата вступления в силу: 12 апреля 2026 г.</p>
     <div class="section">
@@ -185,6 +186,7 @@ const content = {
         <li>Для генерации персональных AI-рецептов на основе ваших ингредиентов и профиля питания</li>
         <li>Для сохранения и синхронизации истории рецептов на всех устройствах</li>
         <li>Для улучшения производительности приложения и пользовательского опыта</li>
+        <li>Для безопасной обработки платежей за подписку</li>
       </ul>
     </div>
     <div class="section">
@@ -211,8 +213,9 @@ const content = {
         <a href="mailto:aloneinkitchen@gmail.com">aloneinkitchen@gmail.com</a></p>
       </div>
     </div>`,
-
-  es: `
+    footer_privacy: "Политика конфиденциальности", footer_support: "Поддержка", footer_home: "Главная"
+  },
+  es: { html: `
     <h1 class="page-title">Política de Privacidad</h1>
     <p class="effective-date">Fecha de vigencia: 12 de abril de 2026</p>
     <div class="section">
@@ -244,6 +247,7 @@ const content = {
         <li>Para generar recetas AI personalizadas basadas en tus ingredientes y perfil dietético</li>
         <li>Para guardar y sincronizar tu historial de recetas en todos los dispositivos</li>
         <li>Para mejorar el rendimiento de la app y la experiencia del usuario</li>
+        <li>Para procesar pagos de suscripción de forma segura</li>
       </ul>
     </div>
     <div class="section">
@@ -270,8 +274,9 @@ const content = {
         <a href="mailto:aloneinkitchen@gmail.com">aloneinkitchen@gmail.com</a></p>
       </div>
     </div>`,
-
-  fr: `
+    footer_privacy: "Política de privacidad", footer_support: "Soporte", footer_home: "Inicio"
+  },
+  fr: { html: `
     <h1 class="page-title">Politique de Confidentialité</h1>
     <p class="effective-date">Date d'entrée en vigueur : 12 avril 2026</p>
     <div class="section">
@@ -303,6 +308,7 @@ const content = {
         <li>Pour générer des recettes AI personnalisées basées sur vos ingrédients et profil alimentaire</li>
         <li>Pour sauvegarder et synchroniser votre historique de recettes sur tous les appareils</li>
         <li>Pour améliorer les performances de l'app et l'expérience utilisateur</li>
+        <li>Pour traiter les paiements d'abonnement en toute sécurité</li>
       </ul>
     </div>
     <div class="section">
@@ -328,13 +334,20 @@ const content = {
         <p>Si vous avez des questions sur cette Politique de Confidentialité, contactez-nous :<br>
         <a href="mailto:aloneinkitchen@gmail.com">aloneinkitchen@gmail.com</a></p>
       </div>
-    </div>`
+    </div>`,
+    footer_privacy: "Politique de confidentialité", footer_support: "Support", footer_home: "Accueil"
+  }
 };
 
 function setLang(lang) {
+  document.documentElement.lang = lang;
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
   document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
-  document.getElementById('content').innerHTML = content[lang];
+  document.getElementById('content').innerHTML = content[lang].html;
+  document.querySelectorAll('footer [data-i18n]').forEach(function (el) {
+    const key = el.getAttribute('data-i18n');
+    if (content[lang][key]) el.textContent = content[lang][key];
+  });
 }
 
 setLang('en');

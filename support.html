@@ -89,16 +89,16 @@
 
 <footer>
   <div class="footer-links">
-    <a href="privacy.html">Privacy Policy</a>
-    <a href="support.html">Support</a>
-    <a href="index.html">Home</a>
+    <a href="privacy.html" data-i18n="footer_privacy">Privacy Policy</a>
+    <a href="support.html" data-i18n="footer_support">Support</a>
+    <a href="index.html" data-i18n="footer_home">Home</a>
   </div>
   <p class="footer-copy">© 2026 Kitchen Alone. All rights reserved.</p>
 </footer>
 
 <script>
 const content = {
-  en: `
+  en: { html: `
     <h1 class="page-title">Support</h1>
     <p class="subtitle">We're here to help. Reach out to us and we'll get back to you as soon as possible.</p>
     <div class="contact-card">
@@ -130,8 +130,9 @@ const content = {
         <p>Currently Kitchen Alone supports Microwave, Air Fryer, and Toaster. More appliances will be added in future updates.</p>
       </div>
     </div>`,
-
-  ru: `
+    footer_privacy: "Privacy Policy", footer_support: "Support", footer_home: "Home"
+  },
+  ru: { html: `
     <h1 class="page-title">Поддержка</h1>
     <p class="subtitle">Мы здесь чтобы помочь. Напишите нам и мы ответим как можно скорее.</p>
     <div class="contact-card">
@@ -163,8 +164,9 @@ const content = {
         <p>Сейчас Kitchen Alone поддерживает Микроволновку, Аэрофритюрницу и Тостер. Больше приборов появится в будущих обновлениях.</p>
       </div>
     </div>`,
-
-  es: `
+    footer_privacy: "Политика конфиденциальности", footer_support: "Поддержка", footer_home: "Главная"
+  },
+  es: { html: `
     <h1 class="page-title">Soporte</h1>
     <p class="subtitle">Estamos aquí para ayudar. Contáctanos y te responderemos lo antes posible.</p>
     <div class="contact-card">
@@ -196,8 +198,9 @@ const content = {
         <p>Actualmente Kitchen Alone soporta Microondas, Freidora de aire y Tostadora. Se agregarán más en futuras actualizaciones.</p>
       </div>
     </div>`,
-
-  fr: `
+    footer_privacy: "Política de privacidad", footer_support: "Soporte", footer_home: "Inicio"
+  },
+  fr: { html: `
     <h1 class="page-title">Support</h1>
     <p class="subtitle">Nous sommes là pour vous aider. Contactez-nous et nous vous répondrons dès que possible.</p>
     <div class="contact-card">
@@ -228,13 +231,20 @@ const content = {
         <h3>Quels appareils sont supportés ?</h3>
         <p>Actuellement Kitchen Alone supporte le Micro-ondes, la Friteuse à air et le Grille-pain. D'autres appareils seront ajoutés dans les prochaines mises à jour.</p>
       </div>
-    </div>`
+    </div>`,
+    footer_privacy: "Politique de confidentialité", footer_support: "Support", footer_home: "Accueil"
+  }
 };
 
 function setLang(lang) {
+  document.documentElement.lang = lang;
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
   document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
-  document.getElementById('content').innerHTML = content[lang];
+  document.getElementById('content').innerHTML = content[lang].html;
+  document.querySelectorAll('footer [data-i18n]').forEach(function (el) {
+    const key = el.getAttribute('data-i18n');
+    if (content[lang][key]) el.textContent = content[lang][key];
+  });
 }
 
 setLang('en');

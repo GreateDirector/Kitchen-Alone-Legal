@@ -107,14 +107,15 @@
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-12px); }
   }
-  .hero h1 {
+  .hero-headline {
     font-family: 'Playfair Display', serif;
     font-size: clamp(36px, 6vw, 72px);
     font-weight: 900;
     line-height: 1.1;
     margin-bottom: 16px;
   }
-  .hero h1 span { color: var(--gold); }
+  .hero-line1 { color: var(--text); display: block; }
+  .hero-line2 { color: var(--gold); display: block; }
   .hero p {
     font-size: 18px;
     color: var(--subtext);
@@ -139,7 +140,7 @@
 
   .features {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     padding: 60px 48px;
     max-width: 1100px;
@@ -165,6 +166,123 @@
   }
   .feature-card p { color: var(--subtext); font-size: 15px; line-height: 1.6; }
 
+  .pricing-section {
+    padding: 40px 48px 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .pricing-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 900;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .pricing-subtitle {
+    text-align: center;
+    color: var(--subtext);
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .pricing-row {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 12px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .pricing-card {
+    position: relative;
+    flex: 0 0 min(260px, 85vw);
+    scroll-snap-align: start;
+    min-height: 420px;
+    display: flex;
+    flex-direction: column;
+  }
+  .pricing-card-popular {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 1px rgba(255,200,64,0.35);
+  }
+  .pricing-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: #111;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .pricing-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    margin-bottom: 8px;
+    color: var(--gold);
+    margin-top: 8px;
+  }
+  .pricing-price-row {
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+  .pricing-price {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .pricing-period {
+    font-size: 14px;
+    color: var(--subtext);
+    font-weight: 500;
+  }
+  .pricing-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px 0;
+    flex-grow: 1;
+  }
+  .pricing-features li {
+    color: var(--subtext);
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    padding-left: 4px;
+  }
+  .pricing-cta {
+    margin-top: auto;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+  }
+  @media (min-width: 1100px) {
+    .pricing-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      overflow: visible;
+    }
+    .pricing-card {
+      flex: none;
+      min-width: 0;
+    }
+  }
+  @media (max-width: 900px) {
+    .features {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
   footer {
     border-top: 1px solid rgba(255,200,64,0.1);
     padding: 40px 48px;
@@ -187,7 +305,8 @@
   @media (max-width: 640px) {
     nav { padding: 16px 20px; }
     .nav-links { display: none; }
-    .features { padding: 40px 20px; }
+    .features { padding: 40px 20px; grid-template-columns: 1fr; }
+    .pricing-section { padding: 32px 20px 60px; }
     footer { padding: 32px 20px; flex-direction: column; text-align: center; }
     .footer-links { justify-content: center; }
   }
@@ -202,6 +321,7 @@
   </a>
   <ul class="nav-links">
     <li><a href="#features" data-i18n="nav_features">Features</a></li>
+    <li><a href="#pricing" data-i18n="nav_pricing">Pricing</a></li>
     <li><a href="privacy.html" data-i18n="nav_privacy">Privacy Policy</a></li>
     <li><a href="support.html" data-i18n="nav_support">Support</a></li>
   </ul>
@@ -215,42 +335,81 @@
 
 <section class="hero">
   <img class="hero-logo" src="logo.png" alt="Kitchen Alone">
-  <h1 data-i18n="hero_title">Cook smarter<br>with <span>Kitchen Alone</span></h1>
-  <p data-i18n="hero_subtitle">Tell us what's in your kitchen. We'll craft a perfect recipe just for you — safe, healthy, and delicious.</p>
+  <h1 class="hero-headline">
+    <span class="hero-line1" data-i18n="hero_line1">Stop eating eggs every day.</span>
+    <span class="hero-line2" data-i18n="hero_line2">Never Alone with Kitchen Alone.</span>
+  </h1>
+  <p data-i18n="hero_subtitle">AI recipes from whatever's in your kitchen — tailored to you, ready in seconds.</p>
   <a class="app-badge" href="#" data-i18n="hero_cta">⬇ Download on App Store</a>
 </section>
 
 <section class="features" id="features">
   <div class="feature-card">
     <div class="feature-icon">🥗</div>
-    <h3 data-i18n="f1_title">Dietary Profiles</h3>
-    <p data-i18n="f1_desc">Vegan, diabetic, gluten-free and more. Every recipe adapts to your needs automatically.</p>
+    <h3 data-i18n="feat_dietary_title">Dietary Profiles</h3>
+    <p data-i18n="feat_dietary_desc">Vegan, diabetic, gluten-free and more. Every recipe adapts to your needs automatically.</p>
   </div>
   <div class="feature-card">
     <div class="feature-icon">🤖</div>
-    <h3 data-i18n="f2_title">AI-Powered Recipes</h3>
-    <p data-i18n="f2_desc">Claude AI generates unique recipes from your available ingredients in seconds.</p>
+    <h3 data-i18n="feat_ai_title">AI-Powered Recipes</h3>
+    <p data-i18n="feat_ai_desc">Claude AI generates unique recipes from your available ingredients in seconds.</p>
   </div>
   <div class="feature-card">
     <div class="feature-icon">🍳</div>
-    <h3 data-i18n="f3_title">Step-by-Step Cooking</h3>
-    <p data-i18n="f3_desc">Follow along with clear instructions, timers, and helpful tips from our AI chef.</p>
+    <h3 data-i18n="feat_cooking_title">Step-by-Step Cooking</h3>
+    <p data-i18n="feat_cooking_desc">Follow along with clear instructions, timers, and helpful tips from your AI chef.</p>
   </div>
   <div class="feature-card">
     <div class="feature-icon">💾</div>
-    <h3 data-i18n="f4_title">Save Your Recipes</h3>
-    <p data-i18n="f4_desc">Sign in with Apple to save your favourite recipes and access them anywhere.</p>
+    <h3 data-i18n="feat_save_title">Save Your Recipes</h3>
+    <p data-i18n="feat_save_desc">Sign in with Apple to save your favourite recipes and access them anywhere.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">📅</div>
+    <h3 data-i18n="feat_meal_title">Meal Planner</h3>
+    <p data-i18n="feat_meal_desc">Plan your week, track calories, water intake and macros — all adapted to your dietary profile.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">📷</div>
+    <h3 data-i18n="feat_scan_title">Scan &amp; Cook</h3>
+    <p data-i18n="feat_scan_desc">Scan any product barcode — AI picks the best appliance and generates a recipe instantly.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">👨‍👩‍👧</div>
+    <h3 data-i18n="feat_family_title">Family &amp; Care Mode</h3>
+    <p data-i18n="feat_family_desc">Connect up to 3 family members. Get push alerts if someone skips a meal or forgets to drink water.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">🎁</div>
+    <h3 data-i18n="feat_guest_title">Try Without Account</h3>
+    <p data-i18n="feat_guest_desc">Generate recipes instantly — no sign-up required. Create an account when you're ready to save.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">🔔</div>
+    <h3 data-i18n="feat_notifications_title">Smart Notifications</h3>
+    <p data-i18n="feat_notifications_desc">Meal reminders, water tracking alerts, and recipe-ready notifications — all at the right time.</p>
   </div>
   <div class="feature-card">
     <div class="feature-icon">🌍</div>
-    <h3 data-i18n="f5_title">4 Languages</h3>
-    <p data-i18n="f5_desc">English, Russian, Spanish and French — Kitchen Alone speaks your language.</p>
+    <h3 data-i18n="feat_languages_title">4 Languages</h3>
+    <p data-i18n="feat_languages_desc">English, Russian, Spanish and French — Kitchen Alone speaks your language.</p>
   </div>
   <div class="feature-card">
     <div class="feature-icon">🔒</div>
-    <h3 data-i18n="f6_title">Privacy First</h3>
-    <p data-i18n="f6_desc">Your dietary data stays private. We never sell your information to third parties.</p>
+    <h3 data-i18n="feat_privacy_title">Privacy First</h3>
+    <p data-i18n="feat_privacy_desc">Your dietary data stays private. We never sell your information to third parties.</p>
   </div>
+  <div class="feature-card">
+    <div class="feature-icon">💳</div>
+    <h3 data-i18n="feat_plans_title">Plans for Everyone</h3>
+    <p data-i18n="feat_plans_desc">Free forever, or upgrade for more recipes, appliances, and family features. Your choice.</p>
+  </div>
+</section>
+
+<section id="pricing" class="pricing-section">
+  <h2 class="pricing-headline" data-i18n="pricing_headline">Plans for Every Kitchen</h2>
+  <p class="pricing-subtitle" data-i18n="pricing_subtitle">Start free. Upgrade when you're ready.</p>
+  <div class="pricing-row" id="pricing-cards"></div>
 </section>
 
 <footer>
@@ -264,63 +423,154 @@
 <script>
 const i18n = {
   en: {
-    nav_features: "Features", nav_privacy: "Privacy Policy", nav_support: "Support",
-    hero_title: "Cook smarter<br>with <span style='color:#FFC840'>Kitchen Alone</span>",
-    hero_subtitle: "Tell us what's in your kitchen. We'll craft a perfect recipe just for you — safe, healthy, and delicious.",
+    nav_features: "Features", nav_pricing: "Pricing", nav_privacy: "Privacy Policy", nav_support: "Support",
+    hero_line1: "Stop eating eggs every day.",
+    hero_line2: "Never Alone with Kitchen Alone.",
+    hero_subtitle: "AI recipes from whatever's in your kitchen — tailored to you, ready in seconds.",
     hero_cta: "⬇ Download on App Store",
-    f1_title: "Dietary Profiles", f1_desc: "Vegan, diabetic, gluten-free and more. Every recipe adapts to your needs automatically.",
-    f2_title: "AI-Powered Recipes", f2_desc: "Claude AI generates unique recipes from your available ingredients in seconds.",
-    f3_title: "Step-by-Step Cooking", f3_desc: "Follow along with clear instructions, timers, and helpful tips from our AI chef.",
-    f4_title: "Save Your Recipes", f4_desc: "Sign in with Apple to save your favourite recipes and access them anywhere.",
-    f5_title: "4 Languages", f5_desc: "English, Russian, Spanish and French — Kitchen Alone speaks your language.",
-    f6_title: "Privacy First", f6_desc: "Your dietary data stays private. We never sell your information to third parties."
+    feat_dietary_title: "Dietary Profiles", feat_dietary_desc: "Vegan, diabetic, gluten-free and more. Every recipe adapts to your needs automatically.",
+    feat_ai_title: "AI-Powered Recipes", feat_ai_desc: "Claude AI generates unique recipes from your available ingredients in seconds.",
+    feat_cooking_title: "Step-by-Step Cooking", feat_cooking_desc: "Follow along with clear instructions, timers, and helpful tips from your AI chef.",
+    feat_save_title: "Save Your Recipes", feat_save_desc: "Sign in with Apple to save your favourite recipes and access them anywhere.",
+    feat_meal_title: "Meal Planner", feat_meal_desc: "Plan your week, track calories, water intake and macros — all adapted to your dietary profile.",
+    feat_scan_title: "Scan & Cook", feat_scan_desc: "Scan any product barcode — AI picks the best appliance and generates a recipe instantly.",
+    feat_family_title: "Family & Care Mode", feat_family_desc: "Connect up to 3 family members. Get push alerts if someone skips a meal or forgets to drink water.",
+    feat_guest_title: "Try Without Account", feat_guest_desc: "Generate recipes instantly — no sign-up required. Create an account when you're ready to save.",
+    feat_notifications_title: "Smart Notifications", feat_notifications_desc: "Meal reminders, water tracking alerts, and recipe-ready notifications — all at the right time.",
+    feat_languages_title: "4 Languages", feat_languages_desc: "English, Russian, Spanish and French — Kitchen Alone speaks your language.",
+    feat_privacy_title: "Privacy First", feat_privacy_desc: "Your dietary data stays private. We never sell your information to third parties.",
+    feat_plans_title: "Plans for Everyone", feat_plans_desc: "Free forever, or upgrade for more recipes, appliances, and family features. Your choice.",
+    pricing_headline: "Plans for Every Kitchen", pricing_subtitle: "Start free. Upgrade when you're ready.", pricing_cta: "Get Started"
   },
   ru: {
-    nav_features: "Функции", nav_privacy: "Политика конфиденциальности", nav_support: "Поддержка",
-    hero_title: "Готовь умнее<br>с <span style='color:#FFC840'>Kitchen Alone</span>",
-    hero_subtitle: "Скажи нам что есть на кухне. Мы создадим идеальный рецепт специально для тебя.",
+    nav_features: "Функции", nav_pricing: "Тарифы", nav_privacy: "Политика конфиденциальности", nav_support: "Поддержка",
+    hero_line1: "Хватит есть яичницу каждый день.",
+    hero_line2: "Ты никогда не один с Kitchen Alone.",
+    hero_subtitle: "AI рецепты из того, что есть у тебя на кухне — под тебя, за секунды.",
     hero_cta: "⬇ Скачать в App Store",
-    f1_title: "Профили питания", f1_desc: "Веган, диабетик, без глютена и другие. Каждый рецепт адаптируется автоматически.",
-    f2_title: "Рецепты на основе AI", f2_desc: "Claude AI генерирует уникальные рецепты из твоих ингредиентов за секунды.",
-    f3_title: "Пошаговая готовка", f3_desc: "Следуй чётким инструкциям, таймерам и советам от AI-шефа.",
-    f4_title: "Сохраняй рецепты", f4_desc: "Войди через Apple чтобы сохранять любимые рецепты и открывать их везде.",
-    f5_title: "4 языка", f5_desc: "Английский, русский, испанский и французский — Kitchen Alone говорит на твоём языке.",
-    f6_title: "Приватность прежде всего", f6_desc: "Твои диетические данные остаются личными. Мы никогда не продаём твою информацию."
+    feat_dietary_title: "Диетические профили", feat_dietary_desc: "Веган, диабетик, без глютена и другие. Каждый рецепт автоматически адаптируется под тебя.",
+    feat_ai_title: "Рецепты на базе AI", feat_ai_desc: "Claude AI создаёт уникальные рецепты из твоих ингредиентов за секунды.",
+    feat_cooking_title: "Пошаговая готовка", feat_cooking_desc: "Следуй чётким инструкциям, таймерам и советам от твоего AI шефа.",
+    feat_save_title: "Сохраняй рецепты", feat_save_desc: "Войди через Apple чтобы сохранять любимые рецепты и открывать их в любом месте.",
+    feat_meal_title: "Планировщик питания", feat_meal_desc: "Планируй неделю, отслеживай калории, воду и макросы — всё под твой профиль питания.",
+    feat_scan_title: "Сканируй и готовь", feat_scan_desc: "Отсканируй штрихкод продукта — AI выберет лучший прибор и создаст рецепт мгновенно.",
+    feat_family_title: "Семья и режим заботы", feat_family_desc: "Подключи до 3 членов семьи. Получай push-уведомления если кто-то пропустил еду или воду.",
+    feat_guest_title: "Попробуй без аккаунта", feat_guest_desc: "Создавай рецепты сразу — без регистрации. Создай аккаунт когда будешь готов сохранять.",
+    feat_notifications_title: "Умные уведомления", feat_notifications_desc: "Напоминания о еде, трекинг воды и уведомления о готовом рецепте — всегда вовремя.",
+    feat_languages_title: "4 языка", feat_languages_desc: "Английский, русский, испанский и французский — Kitchen Alone говорит на твоём языке.",
+    feat_privacy_title: "Приватность прежде всего", feat_privacy_desc: "Твои данные о питании остаются приватными. Мы никогда не продаём твою информацию.",
+    feat_plans_title: "Планы для всех", feat_plans_desc: "Бесплатно навсегда, или обновись для большего количества рецептов, приборов и семейных функций.",
+    pricing_headline: "Планы для каждой кухни", pricing_subtitle: "Начни бесплатно. Обновись когда будешь готов.", pricing_cta: "Начать"
   },
   es: {
-    nav_features: "Funciones", nav_privacy: "Política de privacidad", nav_support: "Soporte",
-    hero_title: "Cocina más inteligente<br>con <span style='color:#FFC840'>Kitchen Alone</span>",
-    hero_subtitle: "Dinos qué hay en tu cocina. Crearemos la receta perfecta solo para ti.",
+    nav_features: "Funciones", nav_pricing: "Precios", nav_privacy: "Política de privacidad", nav_support: "Soporte",
+    hero_line1: "Deja de comer huevos todos los días.",
+    hero_line2: "Nunca estás solo con Kitchen Alone.",
+    hero_subtitle: "Recetas con IA de lo que tengas en tu cocina — hechas para ti, en segundos.",
     hero_cta: "⬇ Descargar en App Store",
-    f1_title: "Perfiles dietéticos", f1_desc: "Vegano, diabético, sin gluten y más. Cada receta se adapta automáticamente.",
-    f2_title: "Recetas con AI", f2_desc: "Claude AI genera recetas únicas de tus ingredientes disponibles en segundos.",
-    f3_title: "Cocina paso a paso", f3_desc: "Sigue instrucciones claras, temporizadores y consejos de nuestro chef AI.",
-    f4_title: "Guarda tus recetas", f4_desc: "Inicia sesión con Apple para guardar tus recetas favoritas y acceder desde cualquier lugar.",
-    f5_title: "4 idiomas", f5_desc: "Inglés, ruso, español y francés — Kitchen Alone habla tu idioma.",
-    f6_title: "Privacidad primero", f6_desc: "Tus datos dietéticos son privados. Nunca vendemos tu información."
+    feat_dietary_title: "Perfiles dietéticos", feat_dietary_desc: "Vegano, diabético, sin gluten y más. Cada receta se adapta a tus necesidades automáticamente.",
+    feat_ai_title: "Recetas con IA", feat_ai_desc: "Claude AI genera recetas únicas con tus ingredientes disponibles en segundos.",
+    feat_cooking_title: "Cocina paso a paso", feat_cooking_desc: "Sigue instrucciones claras, temporizadores y consejos útiles de tu chef IA.",
+    feat_save_title: "Guarda tus recetas", feat_save_desc: "Inicia sesión con Apple para guardar tus recetas favoritas y acceder desde cualquier lugar.",
+    feat_meal_title: "Planificador de comidas", feat_meal_desc: "Planifica tu semana, controla calorías, agua y macros — todo adaptado a tu perfil dietético.",
+    feat_scan_title: "Escanea y cocina", feat_scan_desc: "Escanea el código de barras de cualquier producto — la IA elige el mejor electrodoméstico y genera una receta al instante.",
+    feat_family_title: "Modo familiar y de cuidado", feat_family_desc: "Conecta hasta 3 familiares. Recibe alertas push si alguien se salta una comida o se olvida de beber agua.",
+    feat_guest_title: "Prueba sin cuenta", feat_guest_desc: "Genera recetas al instante — sin registro. Crea una cuenta cuando estés listo para guardar.",
+    feat_notifications_title: "Notificaciones inteligentes", feat_notifications_desc: "Recordatorios de comidas, alertas de hidratación y notificaciones de receta lista — siempre a tiempo.",
+    feat_languages_title: "4 idiomas", feat_languages_desc: "Inglés, ruso, español y francés — Kitchen Alone habla tu idioma.",
+    feat_privacy_title: "Privacidad ante todo", feat_privacy_desc: "Tus datos dietéticos son privados. Nunca vendemos tu información a terceros.",
+    feat_plans_title: "Planes para todos", feat_plans_desc: "Gratis para siempre, o mejora para más recetas, electrodomésticos y funciones familiares.",
+    pricing_headline: "Planes para cada cocina", pricing_subtitle: "Empieza gratis. Actualiza cuando estés listo.", pricing_cta: "Comenzar"
   },
   fr: {
-    nav_features: "Fonctionnalités", nav_privacy: "Politique de confidentialité", nav_support: "Support",
-    hero_title: "Cuisinez plus intelligemment<br>avec <span style='color:#FFC840'>Kitchen Alone</span>",
-    hero_subtitle: "Dites-nous ce qu'il y a dans votre cuisine. Nous créerons la recette parfaite pour vous.",
+    nav_features: "Fonctionnalités", nav_pricing: "Tarifs", nav_privacy: "Politique de confidentialité", nav_support: "Support",
+    hero_line1: "Arrêtez de manger des œufs tous les jours.",
+    hero_line2: "Jamais seul avec Kitchen Alone.",
+    hero_subtitle: "Des recettes IA avec ce que vous avez dans votre cuisine — faites pour vous, en secondes.",
     hero_cta: "⬇ Télécharger sur App Store",
-    f1_title: "Profils alimentaires", f1_desc: "Végétalien, diabétique, sans gluten et plus. Chaque recette s'adapte automatiquement.",
-    f2_title: "Recettes par IA", f2_desc: "Claude AI génère des recettes uniques à partir de vos ingrédients en quelques secondes.",
-    f3_title: "Cuisine étape par étape", f3_desc: "Suivez des instructions claires, des minuteries et des conseils de notre chef IA.",
-    f4_title: "Sauvegardez vos recettes", f4_desc: "Connectez-vous avec Apple pour sauvegarder vos recettes favorites et y accéder partout.",
-    f5_title: "4 langues", f5_desc: "Anglais, russe, espagnol et français — Kitchen Alone parle votre langue.",
-    f6_title: "Confidentialité d'abord", f6_desc: "Vos données alimentaires restent privées. Nous ne vendons jamais vos informations."
+    feat_dietary_title: "Profils alimentaires", feat_dietary_desc: "Végétalien, diabétique, sans gluten et plus. Chaque recette s'adapte automatiquement à vos besoins.",
+    feat_ai_title: "Recettes alimentées par IA", feat_ai_desc: "Claude AI génère des recettes uniques à partir de vos ingrédients disponibles en secondes.",
+    feat_cooking_title: "Cuisine étape par étape", feat_cooking_desc: "Suivez des instructions claires, des minuteries et des conseils utiles de votre chef IA.",
+    feat_save_title: "Sauvegardez vos recettes", feat_save_desc: "Connectez-vous avec Apple pour sauvegarder vos recettes préférées et y accéder partout.",
+    feat_meal_title: "Planificateur de repas", feat_meal_desc: "Planifiez votre semaine, suivez les calories, l'eau et les macros — adaptés à votre profil.",
+    feat_scan_title: "Scannez et cuisinez", feat_scan_desc: "Scannez le code-barres d'un produit — l'IA choisit le meilleur appareil et génère une recette instantanément.",
+    feat_family_title: "Mode famille et soin", feat_family_desc: "Connectez jusqu'à 3 membres de la famille. Recevez des alertes push si quelqu'un saute un repas ou oublie de boire.",
+    feat_guest_title: "Essayez sans compte", feat_guest_desc: "Générez des recettes instantanément — sans inscription. Créez un compte quand vous êtes prêt à sauvegarder.",
+    feat_notifications_title: "Notifications intelligentes", feat_notifications_desc: "Rappels de repas, alertes d'hydratation et notifications de recette prête — toujours au bon moment.",
+    feat_languages_title: "4 langues", feat_languages_desc: "Anglais, russe, espagnol et français — Kitchen Alone parle votre langue.",
+    feat_privacy_title: "La confidentialité avant tout", feat_privacy_desc: "Vos données alimentaires restent privées. Nous ne vendons jamais vos informations à des tiers.",
+    feat_plans_title: "Des plans pour tous", feat_plans_desc: "Gratuit pour toujours, ou passez à la version supérieure pour plus de recettes, d'appareils et de fonctionnalités familiales.",
+    pricing_headline: "Plans pour chaque cuisine", pricing_subtitle: "Commencez gratuitement. Passez à la version supérieure quand vous êtes prêt.", pricing_cta: "Commencer"
   }
 };
 
-function setLang(lang) {
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (i18n[lang][key]) el.innerHTML = i18n[lang][key];
-  });
+const pricingPlans = {
+  en: [
+    { name: "Free", price: "$0", period: "forever", features: ["2 recipes / day", "Toaster only", "Save up to 10 recipes", "Guest mode — no sign-up needed"] },
+    { name: "Starter", price: "$0.99", period: "/ month", features: ["3 recipes / day", "Toaster only", "Unlimited saved recipes", "Unlimited recipe storage"] },
+    { name: "Home Cook", price: "$2.99", period: "/ month", features: ["5 recipes / day", "Toaster + Air Fryer", "Meal Planner included", "No banner ads"] },
+    { name: "Pro Cook", price: "$6.99", period: "/ month", badge: "Most Popular", features: ["7 recipes / day", "All appliances", "Meal Planner included", "No ads ever", "All brand recipes"] },
+    { name: "Family", price: "$9.99", period: "/ month", features: ["Everything in Pro Cook", "Up to 3 linked accounts", "Care Mode guardian alerts", "Meal & water skip notifications"] }
+  ],
+  ru: [
+    { name: "Бесплатно", price: "$0", period: "навсегда", features: ["2 рецепта в день", "Только тостер", "Сохранить до 10 рецептов", "Гостевой режим — без регистрации"] },
+    { name: "Стартер", price: "$0.99", period: "/ месяц", features: ["3 рецепта в день", "Только тостер", "Безлимитное сохранение", "Хранение рецептов навсегда"] },
+    { name: "Домашний повар", price: "$2.99", period: "/ месяц", features: ["5 рецептов в день", "Тостер + Аэрофритюрница", "Планировщик питания", "Без баннерной рекламы"] },
+    { name: "Про повар", price: "$6.99", period: "/ месяц", badge: "Самый популярный", features: ["7 рецептов в день", "Все приборы", "Планировщик питания", "Без рекламы навсегда", "Все брендовые рецепты"] },
+    { name: "Семейный", price: "$9.99", period: "/ месяц", features: ["Всё из Про повара", "До 3 связанных аккаунтов", "Режим заботы — алерты опекуна", "Уведомления о пропуске еды и воды"] }
+  ],
+  es: [
+    { name: "Gratis", price: "$0", period: "para siempre", features: ["2 recetas / día", "Solo tostadora", "Guardar hasta 10 recetas", "Modo invitado — sin registro"] },
+    { name: "Inicial", price: "$0.99", period: "/ mes", features: ["3 recetas / día", "Solo tostadora", "Recetas guardadas ilimitadas", "Almacenamiento ilimitado"] },
+    { name: "Cocinero casero", price: "$2.99", period: "/ mes", features: ["5 recetas / día", "Tostadora + Freidora de aire", "Planificador incluido", "Sin anuncios banner"] },
+    { name: "Cocinero Pro", price: "$6.99", period: "/ mes", badge: "Más popular", features: ["7 recetas / día", "Todos los electrodomésticos", "Planificador incluido", "Sin anuncios nunca", "Todas las recetas de marca"] },
+    { name: "Familiar", price: "$9.99", period: "/ mes", features: ["Todo en Cocinero Pro", "Hasta 3 cuentas vinculadas", "Alertas del modo cuidado", "Notificaciones de comidas y agua omitidas"] }
+  ],
+  fr: [
+    { name: "Gratuit", price: "$0", period: "pour toujours", features: ["2 recettes / jour", "Grille-pain uniquement", "Sauvegarder jusqu'à 10 recettes", "Mode invité — sans inscription"] },
+    { name: "Débutant", price: "$0.99", period: "/ mois", features: ["3 recettes / jour", "Grille-pain uniquement", "Recettes sauvegardées illimitées", "Stockage illimité"] },
+    { name: "Cuisinier maison", price: "$2.99", period: "/ mois", features: ["5 recettes / jour", "Grille-pain + Friteuse à air", "Planificateur inclus", "Sans bannières publicitaires"] },
+    { name: "Cuisinier Pro", price: "$6.99", period: "/ mois", badge: "Le plus populaire", features: ["7 recettes / jour", "Tous les appareils", "Planificateur inclus", "Sans publicité jamais", "Toutes les recettes de marque"] },
+    { name: "Famille", price: "$9.99", period: "/ mois", features: ["Tout dans Cuisinier Pro", "Jusqu'à 3 comptes liés", "Alertes du mode soin", "Notifications repas et eau manqués"] }
+  ]
+};
+
+function renderPricing(lang) {
+  const root = document.getElementById('pricing-cards');
+  if (!root) return;
+  const plans = pricingPlans[lang];
+  const cta = i18n[lang].pricing_cta;
+  root.innerHTML = plans.map(function (p, i) {
+    const popular = i === 3;
+    const badgeHtml = p.badge ? '<div class="pricing-badge">' + p.badge + '</div>' : '';
+    const feats = p.features.map(function (f) { return '<li>✓ ' + f + '</li>'; }).join('');
+    return '<article class="feature-card pricing-card' + (popular ? ' pricing-card-popular' : '') + '">' +
+      badgeHtml +
+      '<h3>' + p.name + '</h3>' +
+      '<div class="pricing-price-row"><span class="pricing-price">' + p.price + '</span> <span class="pricing-period">' + p.period + '</span></div>' +
+      '<ul class="pricing-features">' + feats + '</ul>' +
+      '<a class="app-badge pricing-cta" href="#">' + cta + '</a>' +
+      '</article>';
+  }).join('');
 }
+
+function setLang(lang) {
+  document.documentElement.lang = lang;
+  document.querySelectorAll('.lang-btn').forEach(function (b) { b.classList.remove('active'); });
+  document.querySelector('.lang-btn[onclick="setLang(\'' + lang + '\')"]').classList.add('active');
+  document.querySelectorAll('[data-i18n]').forEach(function (el) {
+    const key = el.getAttribute('data-i18n');
+    if (!i18n[lang][key]) return;
+    if (key === 'hero_line1' || key === 'hero_line2') {
+      el.textContent = i18n[lang][key];
+    } else {
+      el.innerHTML = i18n[lang][key];
+    }
+  });
+  renderPricing(lang);
+}
+
+setLang('en');
 </script>
 </body>
 </html>
