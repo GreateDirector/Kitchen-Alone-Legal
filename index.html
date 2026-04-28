@@ -620,6 +620,129 @@
     overflow: hidden;
   }
 
+  .stats-section {
+    position: relative;
+    z-index: 1;
+    padding: clamp(40px, 6vw, 80px) clamp(16px, 4vw, 40px);
+  }
+
+  .stats-container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  @media (max-width: 768px) {
+    .stats-row {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 400px) {
+    .stats-row {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .stat-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(212,175,55,0.15);
+    border-radius: 18px;
+    padding: clamp(20px, 3vw, 32px) 20px;
+    text-align: center;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+    cursor: default;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(212,175,55,0.45);
+  }
+
+  .stat-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+
+  .stat-number {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    color: #d4af37;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: clamp(12px, 1.5vw, 14px);
+    color: rgba(240,236,224,0.5);
+    line-height: 1.4;
+  }
+
+  .early-card {
+    max-width: 580px;
+    margin: 0 auto;
+    background: rgba(212,175,55,0.05);
+    border: 1px solid rgba(212,175,55,0.2);
+    border-radius: 20px;
+    padding: clamp(24px, 4vw, 40px);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .early-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 10%; right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg,
+      transparent, rgba(212,175,55,0.6), transparent);
+  }
+
+  .early-badge {
+    display: inline-block;
+    background: rgba(212,175,55,0.12);
+    border: 1px solid rgba(212,175,55,0.25);
+    color: #d4af37;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 5px 16px;
+    border-radius: 20px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .early-stars {
+    font-size: 20px;
+    letter-spacing: 4px;
+    color: #d4af37;
+    margin-bottom: 14px;
+  }
+
+  .early-text {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(16px, 2vw, 20px);
+    color: #f0ece0;
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .early-sub {
+    font-size: 12px;
+    color: rgba(240,236,224,0.35);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
   @media (min-width: 640px) {
     :root { --nav-h: 76px; }
   }
@@ -689,6 +812,44 @@
   </h1>
   <p data-i18n="hero_subtitle">AI recipes from whatever's in your kitchen — tailored to you, ready in seconds.</p>
   <a class="app-badge hero-cta" href="#" data-i18n="hero_cta">⬇ Download on App Store</a>
+</section>
+
+<section class="stats-section" id="stats">
+  <div class="stats-container">
+    <p class="section-label" data-i18n="stats_label">✦ By the numbers</p>
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-icon">🍽️</div>
+        <div class="stat-number" data-target="10000" data-suffix="+">0</div>
+        <div class="stat-label" data-i18n="stat_recipes">Recipes in Database</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📦</div>
+        <div class="stat-number" data-target="3000000" data-suffix="+">0</div>
+        <div class="stat-label" data-i18n="stat_products">Products via Scan</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🌍</div>
+        <div class="stat-number" data-target="4" data-suffix="">0</div>
+        <div class="stat-label" data-i18n="stat_languages">Languages Supported</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🥗</div>
+        <div class="stat-number" data-target="7" data-suffix="">0</div>
+        <div class="stat-label" data-i18n="stat_profiles">Dietary Profiles</div>
+      </div>
+    </div>
+    <div class="early-card">
+      <div class="early-badge" data-i18n="early_badge">✦ Early Access</div>
+      <div class="early-stars">★★★★★</div>
+      <div class="early-text" data-i18n="early_text">
+        "Be among the first to cook smarter. Your story starts here."
+      </div>
+      <div class="early-sub" data-i18n="early_sub">
+        Kitchen Alone — launching soon
+      </div>
+    </div>
+  </div>
 </section>
 
 <section class="features" id="features">
@@ -798,6 +959,14 @@ const i18n = {
     hero_line2: "Never Alone with Kitchen Alone.",
     hero_subtitle: "AI recipes from whatever's in your kitchen — tailored to you, ready in seconds.",
     hero_cta: "⬇ Download on App Store",
+    stats_label: "✦ By the numbers",
+    stat_recipes: "Recipes in Database",
+    stat_products: "Products via Scan",
+    stat_languages: "Languages Supported",
+    stat_profiles: "Dietary Profiles",
+    early_badge: "✦ Early Access",
+    early_text: "\"Be among the first to cook smarter. Your story starts here.\"",
+    early_sub: "Kitchen Alone — launching soon",
     feat_dietary_title: "Dietary Profiles", feat_dietary_desc: "Vegan, diabetic, gluten-free and more. Every recipe adapts to your needs automatically.",
     feat_ai_title: "Your Recipes", feat_ai_desc: "Get unique recipes from your available ingredients that you have in your Kitchen in seconds.",
     feat_cooking_title: "Step-by-Step Cooking", feat_cooking_desc: "Follow along with clear instructions, timers, and helpful tips from your AI chef.",
@@ -819,6 +988,14 @@ const i18n = {
     hero_line2: "Ты никогда не один с Kitchen Alone.",
     hero_subtitle: "AI рецепты из того, что есть у тебя на кухне — под тебя, за секунды.",
     hero_cta: "⬇ Скачать в App Store",
+    stats_label: "✦ В цифрах",
+    stat_recipes: "Рецептов в базе",
+    stat_products: "Продуктов через сканер",
+    stat_languages: "Языков интерфейса",
+    stat_profiles: "Диетических профилей",
+    early_badge: "✦ Ранний доступ",
+    early_text: "\"Будь среди первых кто готовит умнее. Твоя история начинается здесь.\"",
+    early_sub: "Kitchen Alone — скоро запуск",
     feat_dietary_title: "Диетические профили", feat_dietary_desc: "Веган, диабетик, без глютена и другие. Каждый рецепт автоматически адаптируется под тебя.",
     feat_ai_title: "Твои рецепты", feat_ai_desc: "Claude AI создаёт уникальные рецепты из твоих ингредиентов за секунды.",
     feat_cooking_title: "Пошаговая готовка", feat_cooking_desc: "Следуй чётким инструкциям, таймерам и советам от твоего AI шефа.",
@@ -840,6 +1017,14 @@ const i18n = {
     hero_line2: "Nunca estás solo con Kitchen Alone.",
     hero_subtitle: "Recetas con IA de lo que tengas en tu cocina — hechas para ti, en segundos.",
     hero_cta: "⬇ Descargar en App Store",
+    stats_label: "✦ En números",
+    stat_recipes: "Recetas en la base",
+    stat_products: "Productos vía escáner",
+    stat_languages: "Idiomas disponibles",
+    stat_profiles: "Perfiles dietéticos",
+    early_badge: "✦ Acceso anticipado",
+    early_text: "\"Sé de los primeros en cocinar más inteligente. Tu historia empieza aquí.\"",
+    early_sub: "Kitchen Alone — próximamente",
     feat_dietary_title: "Perfiles dietéticos", feat_dietary_desc: "Vegano, diabético, sin gluten y más. Cada receta se adapta a tus necesidades automáticamente.",
     feat_ai_title: "Tus recetas", feat_ai_desc: "Claude AI genera recetas únicas con tus ingredientes disponibles en segundos.",
     feat_cooking_title: "Cocina paso a paso", feat_cooking_desc: "Sigue instrucciones claras, temporizadores y consejos útiles de tu chef IA.",
@@ -861,6 +1046,14 @@ const i18n = {
     hero_line2: "Jamais seul avec Kitchen Alone.",
     hero_subtitle: "Des recettes IA avec ce que vous avez dans votre cuisine — faites pour vous, en secondes.",
     hero_cta: "⬇ Télécharger sur App Store",
+    stats_label: "✦ En chiffres",
+    stat_recipes: "Recettes en base",
+    stat_products: "Produits via scanner",
+    stat_languages: "Langues disponibles",
+    stat_profiles: "Profils alimentaires",
+    early_badge: "✦ Accès anticipé",
+    early_text: "\"Soyez parmi les premiers à cuisiner plus intelligemment. Votre histoire commence ici.\"",
+    early_sub: "Kitchen Alone — bientôt disponible",
     feat_dietary_title: "Profils alimentaires", feat_dietary_desc: "Végétalien, diabétique, sans gluten et plus. Chaque recette s'adapte automatiquement à vos besoins.",
     feat_ai_title: "Vos recettes", feat_ai_desc: "Claude AI génère des recettes uniques à partir de vos ingrédients disponibles en secondes.",
     feat_cooking_title: "Cuisine étape par étape", feat_cooking_desc: "Suivez des instructions claires, des minuteries et des conseils utiles de votre chef IA.",
@@ -1046,6 +1239,34 @@ if (featBg) {
   ).join('');
   featBg.appendChild(svg);
 }
+
+function animateCounter(el) {
+  const target = parseInt(el.getAttribute('data-target'), 10);
+  const suffix = el.getAttribute('data-suffix') || '';
+  const duration = target > 100000 ? 2500 : target > 1000 ? 2000 : 1000;
+  const start = performance.now();
+  function update(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = Math.floor(eased * target);
+    el.textContent = current.toLocaleString() + suffix;
+    if (progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.stat-number').forEach(animateCounter);
+      statsObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+const statsSection = document.getElementById('stats');
+if (statsSection) statsObserver.observe(statsSection);
 
 setLang('en');
 </script>
