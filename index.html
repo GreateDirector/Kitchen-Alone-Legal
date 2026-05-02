@@ -296,17 +296,32 @@
     min-height: 44px;
     box-sizing: border-box;
   }
-  .app-badge.hero-cta {
-    width: 100%;
-    max-width: 320px;
+  .app-badge:hover { transform: scale(1.04); }
+
+  .app-store-badge-link {
+    display: inline-block;
+    margin-top: 8px;
   }
-  @media (min-width: 641px) {
-    .app-badge.hero-cta {
-      width: auto;
-      max-width: none;
+  .app-store-badge-link img {
+    height: 70px;
+    width: auto;
+    max-width: 100%;
+    transition: opacity 0.2s;
+    display: block;
+  }
+  @media (max-width: 768px) {
+    .app-store-badge-link img {
+      height: 54px;
     }
   }
-  .app-badge:hover { transform: scale(1.04); }
+  @media (max-width: 480px) {
+    .app-store-badge-link img {
+      height: 44px;
+    }
+  }
+  .app-store-badge-link:hover img {
+    opacity: 0.85;
+  }
 
   .section-label {
     text-align: center;
@@ -824,7 +839,16 @@
     <span class="hero-line2" data-i18n="hero_line2">Never Alone with Kitchen Alone.</span>
   </h1>
   <p data-i18n="hero_subtitle">AI recipes from whatever's in your kitchen — tailored to you, ready in seconds.</p>
-  <a class="app-badge hero-cta" href="https://apps.apple.com/us/app/kitchen-alone/id6762139861" target="_blank" rel="noopener noreferrer" data-i18n="hero_cta">⬇ Download on App Store</a>
+  <a class="hero-cta app-store-badge-link"
+     href="https://apps.apple.com/us/app/kitchen-alone/id6762139861"
+     target="_blank"
+     rel="noopener noreferrer">
+      <img id="app-store-badge"
+           src="badges/Apple/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg"
+           alt="Download on the App Store"
+           height="70"
+           style="width:auto;">
+  </a>
 </section>
 
 <section class="stats-section" id="stats">
@@ -1180,6 +1204,16 @@ function setLang(lang) {
     }
   });
   renderPricing(lang);
+  const appStoreBadges = {
+      'en': 'badges/Apple/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg',
+      'ru': 'badges/Apple/Download_on_the_App_Store_Badge_RU_RGB_blk_100317.svg',
+      'es': 'badges/Apple/Download_on_the_App_Store_Badge_ES_RGB_blk_100217.svg',
+      'fr': 'badges/Apple/Download_on_the_App_Store_Badge_FR_RGB_blk_100517.svg'
+  };
+  const badgeEl = document.getElementById('app-store-badge');
+  if (badgeEl && appStoreBadges[lang]) {
+      badgeEl.src = appStoreBadges[lang];
+  }
 }
 
 const heroRecipeData = [
