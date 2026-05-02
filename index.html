@@ -16,9 +16,12 @@
     --nav-h: 72px;
   }
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-  html { overflow-x: hidden; }
-  body {
+  html {
+    overflow-x: hidden;
     background: var(--bg);
+  }
+  body {
+    background: transparent;
     color: var(--text);
     font-family: 'DM Sans', sans-serif;
     font-size: max(14px, 0.875rem);
@@ -34,12 +37,12 @@
     position: fixed;
     inset: 0;
     pointer-events: none;
-    z-index: 0;
+    z-index: -1;
     overflow: hidden;
   }
   .food-item {
     position: absolute;
-    opacity: 0.06;
+    opacity: 0.3;
     animation: foodFloat ease-in-out infinite;
     user-select: none;
     line-height: 1;
@@ -209,6 +212,7 @@
   }
   .hero-logo-wrap {
     position: relative;
+    z-index: 0;
     display: inline-block;
     margin-bottom: 8px;
   }
@@ -217,10 +221,11 @@
   }
   .fi {
     position: absolute;
+    z-index: -1;
     font-size: 24px;
     animation: fiFloat ease-in-out infinite;
     pointer-events: none;
-    opacity: 0.9;
+    opacity: 0.3;
   }
   .fi-1 { top: -8px; right: -32px; animation-duration: 5s; animation-delay: 0s; }
   .fi-2 { bottom: 4px; right: -36px; animation-duration: 6s; animation-delay: 1.2s; }
@@ -231,6 +236,8 @@
     50% { transform: translateY(-10px) rotate(14deg); }
   }
   .hero-logo {
+    position: relative;
+    z-index: 1;
     width: min(100%, 160px);
     max-width: 160px;
     height: auto;
