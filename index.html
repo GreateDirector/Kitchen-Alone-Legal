@@ -279,6 +279,32 @@
     line-height: 1.5;
     margin-bottom: clamp(24px, 5vw, 40px);
   }
+  .feature-chips {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 16px auto;
+  }
+  .chip {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 8px 16px;
+  }
+  .chip img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+  .chip span {
+    font-size: 14px;
+    color: #ffffff;
+  }
+
   .app-badge {
     display: inline-flex;
     align-items: center;
@@ -838,7 +864,21 @@
     <span class="hero-line1" data-i18n="hero_line1">Stop eating eggs every day.</span>
     <span class="hero-line2" data-i18n="hero_line2">Never Alone with Kitchen Alone.</span>
   </h1>
-  <p data-i18n="hero_subtitle">AI recipes from whatever's in your kitchen — tailored to you, ready in seconds.</p>
+  <p data-i18n="hero_subtitle">Cook real meals from ingredients you already have. Quick recipes for one — Air Fryer, Microwave, or Toaster.</p>
+  <div class="feature-chips">
+    <div class="chip">
+      <img src="icons/icon_calendar.png" alt="Meal Planning">
+      <span data-i18n="chip_meal">Meal Planning</span>
+    </div>
+    <div class="chip">
+      <span class="chip-emoji">💧</span>
+      <span data-i18n="chip_water">Water Reminders</span>
+    </div>
+    <div class="chip">
+      <img src="icons/icon_family.png" alt="Family Care">
+      <span data-i18n="chip_family">Family Care</span>
+    </div>
+  </div>
   <a class="hero-cta app-store-badge-link"
      href="https://apps.apple.com/us/app/kitchen-alone/id6762139861"
      target="_blank"
@@ -995,8 +1035,11 @@ const i18n = {
     section_features_label: "✦ What's inside", section_pricing_label: "✦ Plans",
     hero_line1: "Stop eating eggs every day.",
     hero_line2: "Never Alone with Kitchen Alone.",
-    hero_subtitle: "AI recipes from whatever's in your kitchen — tailored to you, ready in seconds.",
+    hero_subtitle: "Cook real meals from ingredients you already have. Quick recipes for one — Air Fryer, Microwave, or Toaster.",
     hero_cta: "⬇ Download on App Store",
+    chip_meal: "Meal Planning",
+    chip_water: "Water Reminders",
+    chip_family: "Family Care",
     stats_label: "✦ By the numbers",
     stat_recipes: "Recipes in Database",
     stat_products: "Products via Scan",
@@ -1025,8 +1068,11 @@ const i18n = {
     section_features_label: "✦ Что внутри", section_pricing_label: "✦ Тарифы",
     hero_line1: "Хватит есть яичницу каждый день.",
     hero_line2: "Ты никогда не один с Kitchen Alone.",
-    hero_subtitle: "AI рецепты из того, что есть у тебя на кухне — под тебя, за секунды.",
+    hero_subtitle: "Готовь настоящие блюда из того, что есть дома. Быстрые рецепты для одного — Аэрофритюрница, Микроволновка или Тостер.",
     hero_cta: "⬇ Скачать в App Store",
+    chip_meal: "Планирование питания",
+    chip_water: "Напоминания о воде",
+    chip_family: "Забота о семье",
     stats_label: "✦ В цифрах",
     stat_recipes: "Рецептов в базе",
     stat_products: "Продуктов через сканер",
@@ -1055,8 +1101,11 @@ const i18n = {
     section_features_label: "✦ Qué incluye", section_pricing_label: "✦ Planes",
     hero_line1: "Deja de comer huevos todos los días.",
     hero_line2: "Nunca estás solo con Kitchen Alone.",
-    hero_subtitle: "Recetas con IA de lo que tengas en tu cocina — hechas para ti, en segundos.",
+    hero_subtitle: "Cocina comidas reales con lo que tienes en casa. Recetas rápidas para uno — Freidora, Microondas o Tostadora.",
     hero_cta: "⬇ Descargar en App Store",
+    chip_meal: "Planificación",
+    chip_water: "Recordatorios de agua",
+    chip_family: "Cuidado familiar",
     stats_label: "✦ En números",
     stat_recipes: "Recetas en la base",
     stat_products: "Productos vía escáner",
@@ -1085,8 +1134,11 @@ const i18n = {
     section_features_label: "✦ Ce qui est inclus", section_pricing_label: "✦ Plans",
     hero_line1: "Arrêtez de manger des œufs tous les jours.",
     hero_line2: "Jamais seul avec Kitchen Alone.",
-    hero_subtitle: "Des recettes IA avec ce que vous avez dans votre cuisine — faites pour vous, en secondes.",
+    hero_subtitle: "Cuisinez de vrais repas avec ce que vous avez. Recettes rapides pour un — Friteuse à air, Micro-ondes ou Grille-pain.",
     hero_cta: "⬇ Télécharger sur App Store",
+    chip_meal: "Planning repas",
+    chip_water: "Rappels d'eau",
+    chip_family: "Soin familial",
     stats_label: "✦ En chiffres",
     stat_recipes: "Recettes en base",
     stat_products: "Produits via scanner",
