@@ -354,9 +354,13 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 16px;
-    flex-wrap: wrap;
+    gap: 12px;
+    flex-wrap: nowrap;
     margin-top: 8px;
+    width: 100%;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .google-play-badge-link {
     display: inline-block;
@@ -372,14 +376,21 @@
     .google-play-badge-link img {
       height: 54px;
     }
+    .app-store-badge-link img {
+      height: 54px;
+    }
   }
   @media (max-width: 480px) {
     .google-play-badge-link img {
       height: 44px;
     }
+    .app-store-badge-link img {
+      height: 44px;
+    }
     .badge-row {
-      flex-direction: column;
-      gap: 10px;
+      flex-direction: row;
+      gap: 8px;
+      flex-wrap: nowrap;
     }
   }
   .google-play-badge-link:hover img {
