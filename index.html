@@ -349,6 +349,43 @@
     opacity: 0.85;
   }
 
+  .badge-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  .google-play-badge-link {
+    display: inline-block;
+  }
+  .google-play-badge-link img {
+    height: 70px;
+    width: auto;
+    max-width: 100%;
+    transition: opacity 0.2s;
+    display: block;
+  }
+  @media (max-width: 768px) {
+    .google-play-badge-link img {
+      height: 54px;
+    }
+  }
+  @media (max-width: 480px) {
+    .google-play-badge-link img {
+      height: 44px;
+    }
+    .badge-row {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+  .google-play-badge-link:hover img {
+    opacity: 0.85;
+  }
+
   .section-label {
     text-align: center;
     font-size: 12px;
@@ -879,16 +916,29 @@
       <span data-i18n="chip_family">Family Care</span>
     </div>
   </div>
-  <a class="hero-cta app-store-badge-link"
-     href="https://apps.apple.com/us/app/kitchen-alone/id6762139861"
-     target="_blank"
-     rel="noopener noreferrer">
-      <img id="app-store-badge"
-           src="badges/Apple/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg"
-           alt="Download on the App Store"
-           height="70"
-           style="width:auto;">
-  </a>
+  <div class="badge-row">
+    <a class="hero-cta app-store-badge-link"
+       href="https://apps.apple.com/us/app/kitchen-alone/id6762139861"
+       target="_blank"
+       rel="noopener noreferrer">
+        <img id="app-store-badge"
+             src="badges/Apple/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg"
+             alt="Download on the App Store"
+             height="70"
+             style="width:auto;">
+    </a>
+    <a id="google-play-badge-link"
+       class="hero-cta google-play-badge-link"
+       href="#"
+       target="_blank"
+       rel="noopener noreferrer">
+        <img id="google-play-badge"
+             src="badges/Android/GetItOnGooglePlay_Badge_Web_color_English.svg"
+             alt="Get it on Google Play"
+             height="70"
+             style="width:auto;">
+    </a>
+  </div>
 </section>
 
 <section class="stats-section" id="stats">
@@ -1265,6 +1315,16 @@ function setLang(lang) {
   const badgeEl = document.getElementById('app-store-badge');
   if (badgeEl && appStoreBadges[lang]) {
       badgeEl.src = appStoreBadges[lang];
+  }
+  const googlePlayBadges = {
+    'en': 'badges/Android/GetItOnGooglePlay_Badge_Web_color_English.svg',
+    'ru': 'badges/Android/GetItOnGooglePlay_Badge_Web_color_Russian.svg',
+    'es': 'badges/Android/GetItOnGooglePlay_Badge_Web_color_Spanish.svg',
+    'fr': 'badges/Android/GetItOnGooglePlay_Badge_Web_color_French.svg'
+  };
+  const googleBadgeEl = document.getElementById('google-play-badge');
+  if (googleBadgeEl && googlePlayBadges[lang]) {
+    googleBadgeEl.src = googlePlayBadges[lang];
   }
 }
 
