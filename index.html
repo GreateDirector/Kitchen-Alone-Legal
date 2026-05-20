@@ -782,6 +782,164 @@
     line-height: 1.4;
   }
 
+  .stat-card-clickable {
+    cursor: pointer;
+  }
+  .stat-card-clickable:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255,200,64,0.55);
+    box-shadow: 0 10px 32px rgba(212,175,55,0.14);
+  }
+  .stat-card-clickable:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  .dietary-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 350;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(12px, 4vw, 24px);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.22s ease, visibility 0.22s ease;
+    pointer-events: none;
+  }
+  .dietary-modal.is-open {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .dietary-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 10, 6, 0.82);
+    backdrop-filter: blur(6px);
+  }
+  .dietary-modal-panel {
+    position: relative;
+    z-index: 1;
+    width: min(920px, 100%);
+    max-height: min(92vh, 900px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid rgba(255,200,64,0.2);
+    border-radius: 22px;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.45);
+  }
+  .dietary-modal-scroll {
+    overflow-y: auto;
+    padding: clamp(20px, 4vw, 32px);
+    -webkit-overflow-scrolling: touch;
+  }
+  .dietary-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 2;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,200,64,0.3);
+    background: rgba(15,26,15,0.6);
+    color: var(--gold);
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .dietary-modal-close:hover {
+    background: rgba(212,175,55,0.12);
+    border-color: rgba(255,200,64,0.5);
+  }
+  .dietary-modal-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(22px, 4vw, 32px);
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 8px;
+    padding-right: 48px;
+  }
+  .dietary-modal-lead {
+    font-size: clamp(14px, 2vw, 16px);
+    color: var(--subtext);
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+  .dietary-modal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(248px, 1fr));
+    gap: 14px;
+  }
+  @media (max-width: 480px) {
+    .dietary-modal-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .diet-profile-card {
+    position: relative;
+    text-align: left;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(212,175,55,0.18);
+    border-radius: 16px;
+    padding: 18px 16px 16px;
+    transition: border-color 0.22s ease, transform 0.22s ease;
+  }
+  .diet-profile-card:hover {
+    border-color: rgba(255,200,64,0.4);
+    transform: translateY(-2px);
+  }
+  .diet-profile-new {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(212,175,55,0.12);
+    border: 1px solid rgba(212,175,55,0.35);
+    padding: 3px 8px;
+    border-radius: 999px;
+  }
+  .diet-profile-emoji {
+    font-size: 28px;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  .diet-profile-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(15px, 2vw, 18px);
+    color: #f0ece0;
+    font-weight: 700;
+    margin-bottom: 6px;
+    line-height: 1.25;
+    padding-right: 48px;
+  }
+  .diet-profile-short {
+    font-size: 12px;
+    font-weight: 600;
+    color: #c9a84c;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .diet-profile-desc {
+    font-size: 13px;
+    color: rgba(240,236,224,0.65);
+    line-height: 1.45;
+    margin: 0;
+  }
+
   .early-card {
     max-width: 580px;
     margin: 0 auto;
@@ -962,9 +1120,9 @@
         <div class="stat-number" data-target="4" data-suffix="">0</div>
         <div class="stat-label" data-i18n="stat_languages">Languages Supported</div>
       </div>
-      <div class="stat-card">
+      <div class="stat-card stat-card-clickable" id="statCardDietaryProfiles" role="button" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="dietary-modal">
         <div class="stat-icon">🥗</div>
-        <div class="stat-number" data-target="7" data-suffix="">0</div>
+        <div class="stat-number" data-target="10" data-suffix="">0</div>
         <div class="stat-label" data-i18n="stat_profiles">Dietary Profiles</div>
       </div>
     </div>
@@ -1080,6 +1238,18 @@
   <p class="footer-copy">© 2026 Kitchen Alone by Rebushar LLC. All rights reserved.</p>
 </footer>
 
+<div id="dietary-modal" class="dietary-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="dietary-modal-title">
+  <div class="dietary-modal-backdrop" id="dietaryModalBackdrop"></div>
+  <div class="dietary-modal-panel">
+    <button type="button" class="dietary-modal-close dietary-modal-close-btn" aria-label="Close">&times;</button>
+    <div class="dietary-modal-scroll">
+      <h2 id="dietary-modal-title" class="dietary-modal-title"></h2>
+      <p class="dietary-modal-lead" data-i18n="dietary_modal_lead"></p>
+      <div id="dietary-modal-grid" class="dietary-modal-grid"></div>
+    </div>
+  </div>
+</div>
+
 <script>
 const i18n = {
   en: {
@@ -1113,7 +1283,12 @@ const i18n = {
     feat_privacy_title: "Privacy First", feat_privacy_desc: "Your dietary data stays private. We never sell your information to third parties.",
     feat_plans_title: "Plans for Everyone", feat_plans_desc: "Free forever, or upgrade for more recipes, appliances, and family features. Your choice.",
     pricing_headline: "Plans for Every Kitchen", pricing_subtitle: "Start free. Upgrade when you're ready.", pricing_cta: "Get Started",
-    footer_terms: "Terms of Use"
+    footer_terms: "Terms of Use",
+    dietary_modal_title: "10 dietary profiles",
+    dietary_modal_lead: "Every recipe adapts to the profile you choose in Kitchen Alone.",
+    dietary_new_badge: "NEW",
+    dietary_stat_aria: "View all 10 dietary profiles",
+    dietary_close_label: "Close"
   },
   ru: {
     nav_features: "Функции", nav_pricing: "Тарифы", nav_privacy: "Политика конфиденциальности", nav_support: "Поддержка",
@@ -1146,7 +1321,12 @@ const i18n = {
     feat_privacy_title: "Приватность прежде всего", feat_privacy_desc: "Твои данные о питании остаются приватными. Мы никогда не продаём твою информацию.",
     feat_plans_title: "Планы для всех", feat_plans_desc: "Бесплатно навсегда, или обновись для большего количества рецептов, приборов и семейных функций.",
     pricing_headline: "Планы для каждой кухни", pricing_subtitle: "Начни бесплатно. Обновись когда будешь готов.", pricing_cta: "Начать",
-    footer_terms: "Условия использования"
+    footer_terms: "Условия использования",
+    dietary_modal_title: "10 диетических профилей",
+    dietary_modal_lead: "Каждый рецепт подстраивается под выбранный в приложении профиль.",
+    dietary_new_badge: "NEW",
+    dietary_stat_aria: "Открыть список из 10 диетических профилей",
+    dietary_close_label: "Закрыть"
   },
   es: {
     nav_features: "Funciones", nav_pricing: "Precios", nav_privacy: "Política de privacidad", nav_support: "Soporte",
@@ -1179,7 +1359,12 @@ const i18n = {
     feat_privacy_title: "Privacidad ante todo", feat_privacy_desc: "Tus datos dietéticos son privados. Nunca vendemos tu información a terceros.",
     feat_plans_title: "Planes para todos", feat_plans_desc: "Gratis para siempre, o mejora para más recetas, electrodomésticos y funciones familiares.",
     pricing_headline: "Planes para cada cocina", pricing_subtitle: "Empieza gratis. Actualiza cuando estés listo.", pricing_cta: "Comenzar",
-    footer_terms: "Términos de uso"
+    footer_terms: "Términos de uso",
+    dietary_modal_title: "10 perfiles dietéticos",
+    dietary_modal_lead: "Cada receta se adapta al perfil que elijas en la app.",
+    dietary_new_badge: "NUEVO",
+    dietary_stat_aria: "Ver los 10 perfiles dietéticos",
+    dietary_close_label: "Cerrar"
   },
   fr: {
     nav_features: "Fonctionnalités", nav_pricing: "Tarifs", nav_privacy: "Politique de confidentialité", nav_support: "Support",
@@ -1212,7 +1397,12 @@ const i18n = {
     feat_privacy_title: "La confidentialité avant tout", feat_privacy_desc: "Vos données alimentaires restent privées. Nous ne vendons jamais vos informations à des tiers.",
     feat_plans_title: "Des plans pour tous", feat_plans_desc: "Gratuit pour toujours, ou passez à la version supérieure pour plus de recettes, d'appareils et de fonctionnalités familiales.",
     pricing_headline: "Plans pour chaque cuisine", pricing_subtitle: "Commencez gratuitement. Passez à la version supérieure quand vous êtes prêt.", pricing_cta: "Commencer",
-    footer_terms: "Conditions d'utilisation"
+    footer_terms: "Conditions d'utilisation",
+    dietary_modal_title: "10 profils alimentaires",
+    dietary_modal_lead: "Chaque recette s'adapte au profil que vous choisissez dans l'app.",
+    dietary_new_badge: "NOUVEAU",
+    dietary_stat_aria: "Voir les 10 profils alimentaires",
+    dietary_close_label: "Fermer"
   }
 };
 
@@ -1247,6 +1437,109 @@ const pricingPlans = {
   ]
 };
 
+const dietaryProfilesCatalog = {
+  en: [
+    { emoji: '🍽️', name: 'No Restrictions', short: 'Everything', desc: 'All 105 ingredients available', new: false },
+    { emoji: '🌱', name: 'Vegan', short: 'Vegan', desc: 'No meat, fish, dairy, eggs, or honey', new: false },
+    { emoji: '🥦', name: 'Vegetarian', short: 'Vegetarian', desc: 'No meat or fish', new: false },
+    { emoji: '💙', name: 'Diabetic', short: 'Diabetic', desc: 'Low glycemic — no white rice, pasta, or bread', new: false },
+    { emoji: '🌾', name: 'Gluten-Free', short: 'Gluten-Free', desc: 'No gluten or wheat ingredients', new: false },
+    { emoji: '🥛', name: 'Dairy-Free', short: 'Dairy-Free', desc: 'No dairy products', new: false },
+    { emoji: '☪️', name: 'Halal', short: 'Halal', desc: 'No pork or non-halal ingredients', new: false },
+    { emoji: '🐟', name: 'I love fish & seafood', short: 'Seafood', desc: 'No land meat — fish, shellfish, and plants only', new: true },
+    { emoji: '⚖️', name: 'I want to eat & lose weight', short: 'Weight Loss', desc: 'Lean proteins, vegetables, and fruits', new: true },
+    { emoji: '🍯', name: 'Healthy treats only', short: 'Sweets', desc: 'Fruits, nuts, dairy, eggs, oats, and honey', new: true }
+  ],
+  ru: [
+    { emoji: '🍽️', name: 'Без ограничений', short: 'Всё', desc: 'Доступны все 105 ингредиентов', new: false },
+    { emoji: '🌱', name: 'Веган', short: 'Веган', desc: 'Без мяса, рыбы, молочных продуктов, яиц и мёда', new: false },
+    { emoji: '🥦', name: 'Вегетарианец', short: 'Вегетарианец', desc: 'Без мяса и рыбы', new: false },
+    { emoji: '💙', name: 'Диабетик', short: 'Диабет', desc: 'Низкий гликемический профиль — без белого риса, пасты и хлеба', new: false },
+    { emoji: '🌾', name: 'Без глютена', short: 'Без глютена', desc: 'Без глютена и пшеничных ингредиентов', new: false },
+    { emoji: '🥛', name: 'Без лактозы', short: 'Без молочного', desc: 'Без молочных продуктов', new: false },
+    { emoji: '☪️', name: 'Халяль', short: 'Халяль', desc: 'Без свинины и нехаляльных ингредиентов', new: false },
+    { emoji: '🐟', name: 'Люблю рыбу и морепродукты', short: 'Seafood', desc: 'Без мяса наземных животных — только рыба, морепродукты и растения', new: true },
+    { emoji: '⚖️', name: 'Хочу есть и худеть', short: 'Похудение', desc: 'Постный белок, овощи и фрукты', new: true },
+    { emoji: '🍯', name: 'Только полезные сладости', short: 'Сладости', desc: 'Фрукты, орехи, молочные продукты, яйца, овёс и мёд', new: true }
+  ],
+  es: [
+    { emoji: '🍽️', name: 'Sin restricciones', short: 'Todo', desc: 'Los 105 ingredientes disponibles', new: false },
+    { emoji: '🌱', name: 'Vegano', short: 'Vegano', desc: 'Sin carne, pescado, lácteos, huevos ni miel', new: false },
+    { emoji: '🥦', name: 'Vegetariano', short: 'Vegetariano', desc: 'Sin carne ni pescado', new: false },
+    { emoji: '💙', name: 'Diabético', short: 'Diabético', desc: 'Bajo índice glucémico — sin arroz blanco, pasta ni pan blanco', new: false },
+    { emoji: '🌾', name: 'Sin gluten', short: 'Sin gluten', desc: 'Sin gluten ni trigo', new: false },
+    { emoji: '🥛', name: 'Sin lácteos', short: 'Sin lácteos', desc: 'Sin productos lácteos', new: false },
+    { emoji: '☪️', name: 'Halal', short: 'Halal', desc: 'Sin cerdo ni ingredientes no halal', new: false },
+    { emoji: '🐟', name: 'Amo el pescado y marisco', short: 'Marisco', desc: 'Sin carne terrestre — solo pescado, marisco y vegetales', new: true },
+    { emoji: '⚖️', name: 'Quiero comer y adelgazar', short: 'Pérdida de peso', desc: 'Proteínas magras, verduras y frutas', new: true },
+    { emoji: '🍯', name: 'Solo dulces saludables', short: 'Dulces', desc: 'Frutos secos, fruta, lácteos, huevos, avena y miel', new: true }
+  ],
+  fr: [
+    { emoji: '🍽️', name: 'Aucune restriction', short: 'Tout', desc: 'Les 105 ingrédients disponibles', new: false },
+    { emoji: '🌱', name: 'Végan', short: 'Végan', desc: 'Pas de viande, poisson, produits laitiers, œufs ou miel', new: false },
+    { emoji: '🥦', name: 'Végétarien', short: 'Végétarien', desc: 'Pas de viande ni de poisson', new: false },
+    { emoji: '💙', name: 'Diabétique', short: 'Diabétique', desc: 'Faible glycémie — pas de riz blanc, pâtes ni pain blanc', new: false },
+    { emoji: '🌾', name: 'Sans gluten', short: 'Sans gluten', desc: 'Pas de gluten ni de blé', new: false },
+    { emoji: '🥛', name: 'Sans produits laitiers', short: 'Sans lactose', desc: 'Aucun produit laitier', new: false },
+    { emoji: '☪️', name: 'Halal', short: 'Halal', desc: 'Sans porc ni ingrédients non halal', new: false },
+    { emoji: '🐟', name: 'J’aime le poisson et les fruits de mer', short: 'Mer', desc: 'Pas de viande terrestre — poisson, fruits de mer et végétaux uniquement', new: true },
+    { emoji: '⚖️', name: 'Je veux manger et maigrir', short: 'Perte de poids', desc: 'Protéines maigres, légumes et fruits', new: true },
+    { emoji: '🍯', name: 'Uniquement des douceurs saines', short: 'Douceurs', desc: 'Fruits, noix, produits laitiers, œufs, avoine et miel', new: true }
+  ]
+};
+
+function escapeHtml(text) {
+  var d = document.createElement('div');
+  d.textContent = text;
+  return d.innerHTML;
+}
+
+function renderDietaryModalGrid(lang) {
+  var grid = document.getElementById('dietary-modal-grid');
+  var titleEl = document.getElementById('dietary-modal-title');
+  var lbl = i18n[lang] || i18n.en;
+  var list = dietaryProfilesCatalog[lang] || dietaryProfilesCatalog.en;
+  if (titleEl && lbl.dietary_modal_title) titleEl.textContent = lbl.dietary_modal_title;
+  if (!grid || !list) return;
+  var nb = lbl.dietary_new_badge || 'NEW';
+  grid.innerHTML = list.map(function (p) {
+    var badgeHtml = p.new ? '<span class="diet-profile-new">' + escapeHtml(nb) + '</span>' : '';
+    return '<article class="diet-profile-card">' + badgeHtml +
+      '<div class="diet-profile-emoji">' + p.emoji + '</div>' +
+      '<h3 class="diet-profile-name">' + escapeHtml(p.name) + '</h3>' +
+      '<p class="diet-profile-short">' + escapeHtml(p.short) + '</p>' +
+      '<p class="diet-profile-desc">' + escapeHtml(p.desc) + '</p>' +
+      '</article>';
+  }).join('');
+}
+
+function openDietaryModal() {
+  var modal = document.getElementById('dietary-modal');
+  var lang = document.documentElement.getAttribute('lang') || 'en';
+  var lbl = i18n[lang] || i18n.en;
+  if (!modal) return;
+  renderDietaryModalGrid(lang);
+  modal.classList.add('is-open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  var cb = modal.querySelector('.dietary-modal-close-btn');
+  if (lbl.dietary_close_label && cb) cb.setAttribute('aria-label', lbl.dietary_close_label);
+  var card = document.getElementById('statCardDietaryProfiles');
+  if (card) card.setAttribute('aria-expanded', 'true');
+  if (cb) cb.focus();
+}
+
+function closeDietaryModal() {
+  var modal = document.getElementById('dietary-modal');
+  if (!modal || !modal.classList.contains('is-open')) return false;
+  modal.classList.remove('is-open');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+  var card = document.getElementById('statCardDietaryProfiles');
+  if (card) card.setAttribute('aria-expanded', 'false');
+  return true;
+}
+
 function toggleNav() {
   var nav = document.getElementById('siteNav');
   var panel = document.getElementById('navMobilePanel');
@@ -1271,7 +1564,10 @@ function closeNav() {
 }
 
 document.addEventListener('keydown', function (e) {
-  if (e.key === 'Escape') closeNav();
+  if (e.key === 'Escape') {
+    if (closeDietaryModal()) return;
+    closeNav();
+  }
 });
 
 function renderPricing(lang) {
@@ -1327,6 +1623,16 @@ function setLang(lang) {
   const googleBadgeEl = document.getElementById('google-play-badge');
   if (googleBadgeEl && googlePlayBadges[lang]) {
     googleBadgeEl.src = googlePlayBadges[lang];
+  }
+  var dietaryModalOpen = document.getElementById('dietary-modal');
+  if (dietaryModalOpen && dietaryModalOpen.classList.contains('is-open')) {
+    renderDietaryModalGrid(lang);
+  }
+  var sd = document.getElementById('statCardDietaryProfiles');
+  if (sd && i18n[lang].dietary_stat_aria) sd.setAttribute('aria-label', i18n[lang].dietary_stat_aria);
+  var dietaryCloseBtn = document.querySelector('.dietary-modal-close-btn');
+  if (dietaryCloseBtn && i18n[lang].dietary_close_label) {
+    dietaryCloseBtn.setAttribute('aria-label', i18n[lang].dietary_close_label);
   }
 }
 
@@ -1433,6 +1739,24 @@ const statsObserver = new IntersectionObserver((entries) => {
 
 const statsSection = document.getElementById('stats');
 if (statsSection) statsObserver.observe(statsSection);
+
+(function initDietaryProfilesUI() {
+  var card = document.getElementById('statCardDietaryProfiles');
+  if (card) {
+    card.addEventListener('click', openDietaryModal);
+    card.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openDietaryModal();
+      }
+    });
+  }
+  var bd = document.getElementById('dietaryModalBackdrop');
+  if (bd) bd.addEventListener('click', closeDietaryModal);
+  document.querySelectorAll('.dietary-modal-close-btn').forEach(function (el) {
+    el.addEventListener('click', closeDietaryModal);
+  });
+})();
 
 setLang('en');
 </script>
